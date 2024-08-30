@@ -7,5 +7,7 @@
     git
     htop
     trash-cli
+    gparted
+    mpv
   ];
 }

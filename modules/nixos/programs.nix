@@ -12,5 +12,6 @@
       };
     };
     zsh.enable = true;
+    gamemode.enable = true;
   };
 }

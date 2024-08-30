@@ -11,6 +11,8 @@
       vscode.fhs
       rustup
       macchina
+      google-chrome
+      anki-bin
     ];
 
     shell = pkgs.zsh;

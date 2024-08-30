@@ -5,6 +5,8 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let

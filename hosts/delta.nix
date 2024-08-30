@@ -20,4 +20,6 @@
        turbo = "auto";
     };
   };
+
+  hardware.bluetooth.enable = true;
 }

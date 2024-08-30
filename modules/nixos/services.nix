@@ -10,8 +10,14 @@
       enable = true;
       alsa.enable = true;
       pulse.enable = true;
-      jack.enable = true;
+      # jack.enable = true;
       wireplumber.enable = true;
+
+      # lowLatency = {
+      #   enable = true;
+      #   quantum = 64;
+      #   rate = 48000;
+      # };
     };
 
     libinput.enable = true;
@@ -19,4 +25,6 @@
 
     # openssh.enable = true;
   };
+
+  # security.rtkit.enable = true;
 }
