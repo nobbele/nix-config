@@ -13,6 +13,7 @@
       macchina
       google-chrome
       anki-bin
+      qemu
     ];
 
     shell = pkgs.zsh;

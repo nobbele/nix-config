@@ -9,5 +9,7 @@
     trash-cli
     gparted
     mpv
+    clang
+    gcc
   ];
 }
