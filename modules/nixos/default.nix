@@ -37,6 +37,16 @@
     fira-code-symbols
   ];
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.guest.enable = true;
+  virtualisation.virtualbox.guest.draganddrop = true;
+  users.extraGroups.vboxusers.members = [ "nobbele" ];
+
   system.copySystemConfiguration = true;
   system.stateVersion = "24.05"; # Do not modify!!
 }

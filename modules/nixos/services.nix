@@ -24,6 +24,7 @@
     automatic-timezoned.enable = true;
 
     # openssh.enable = true;
+    flatpak.enable = true;
   };
 
   # security.rtkit.enable = true;

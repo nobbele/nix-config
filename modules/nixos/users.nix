@@ -13,7 +13,19 @@
       macchina
       google-chrome
       anki-bin
-      qemu
+      qemu_full
+      unstable.famistudio
+      webcord
+      lutris
+      qbittorrent
+      gimp
+      wineWowPackages.staging
+      winetricks
+      corefonts
+      gnome.cheese
+      prismlauncher
+      unityhub
+      eigen
     ];
 
     shell = pkgs.zsh;

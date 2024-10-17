@@ -11,5 +11,10 @@
     mpv
     clang
     gcc
+    gnumake
+    openssl
+    distrobox
+    cmake
+    dotnet-sdk
   ];
 }
