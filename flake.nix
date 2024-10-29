@@ -8,6 +8,8 @@
     };
 
     nix-gaming.url = "github:fufexan/nix-gaming";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    # lemurs.url = "github:coastalwhite/lemurs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let

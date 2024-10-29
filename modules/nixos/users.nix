@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   users.users.nobbele = {
@@ -20,12 +20,16 @@
       qbittorrent
       gimp
       wineWowPackages.staging
+      inputs.zen-browser.packages."${system}".specific
       winetricks
       corefonts
       gnome.cheese
       prismlauncher
       unityhub
       eigen
+      bambootracker
+      furnace
+      obs-studio
     ];
 
     shell = pkgs.zsh;

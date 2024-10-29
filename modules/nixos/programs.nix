@@ -2,6 +2,7 @@
 
 {
   programs = {
+    # hyprland.enable = true;
     direnv.enable = true;
     firefox = {
       enable = true;

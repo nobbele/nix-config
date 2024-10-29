@@ -4,6 +4,9 @@
   services = {
     xserver.enable = true;
     displayManager.sddm.enable = true;
+    # displayManager.enable = true;
+    # lemurs.enable = true;
+    # xserver.displayManager.lightdm.enable = false;
     desktopManager.plasma6.enable = true;
 
     pipewire = {
