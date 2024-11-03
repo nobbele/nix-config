@@ -15,10 +15,14 @@
     openssl
     distrobox
     cmake
-    dotnetCorePackages.sdk_7_0
+    (with dotnetCorePackages; combinePackages [
+      sdk_7_0
+      sdk_8_0
+    ])
     nodejs
     # inputs.lemurs.packages."${system}".default
-    libresprite
+    aseprite
     # kitty
+    icu
   ];
 }

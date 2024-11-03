@@ -8,6 +8,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "hm-bak";
     users = {
       nobbele = import ./home-manager;
     };

@@ -8,7 +8,7 @@
       nil
       bitwarden-desktop
       discord-canary
-      vscode.fhs
+      # vscode.fhs
       rustup
       macchina
       google-chrome
@@ -30,6 +30,7 @@
       bambootracker
       furnace
       obs-studio
+      kdenlive
     ];
 
     shell = pkgs.zsh;
