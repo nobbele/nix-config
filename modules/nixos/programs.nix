@@ -18,6 +18,8 @@
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [
       openssl
+      (runCommand "steamrun-lib" {} "mkdir $out; ln -s ${steam-run.fhsenv}/usr/lib64 $out/lib")
+      stdenv.cc.cc.lib
     ];
 
     steam = {

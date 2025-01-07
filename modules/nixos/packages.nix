@@ -24,5 +24,8 @@
     aseprite
     # kitty
     icu
+    pkg-config
+    unrar
+    pkgsi686Linux.gperftools
   ];
 }

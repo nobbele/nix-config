@@ -28,6 +28,7 @@
 
     # openssh.enable = true;
     flatpak.enable = true;
+    lorri.enable = true;
   };
 
   # security.rtkit.enable = true;

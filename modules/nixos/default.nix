@@ -10,7 +10,7 @@
     ./programs.nix
     ./services.nix
     ./users.nix
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    # inputs.nix-gaming.nixosModules.pipewireLowLatency
     # ./lemurs.nix
   ];
 
@@ -39,7 +39,7 @@
   # TODO move to fonts.nix
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     fira-code
     fira-code-symbols
@@ -54,6 +54,18 @@
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.draganddrop = true;
   users.extraGroups.vboxusers.members = [ "nobbele" ];
+
+  # security.pam.loginLimits = [
+  #   { domain = "@audio"; item = "memlock"; type = "-"   ; value = "unlimited"; }
+  #   { domain = "@audio"; item = "rtprio" ; type = "-"   ; value = "99"       ; }
+  #   { domain = "@audio"; item = "nofile" ; type = "soft"; value = "99999"    ; }
+  #   { domain = "@audio"; item = "nofile" ; type = "hard"; value = "99999"    ; }
+  # ];
+
+  # services.udev.extraRules = ''
+  #   KERNEL=="rtc0", GROUP="audio"
+  #   KERNEL=="hpet", GROUP="audio"
+  # '';
 
   system.copySystemConfiguration = true;
   system.stateVersion = "24.05"; # Do not modify!!

@@ -16,6 +16,7 @@
       ripgrep
       lsd
       inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+      csharpier
     ];
   };
 

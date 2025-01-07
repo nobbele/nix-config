@@ -7,12 +7,18 @@
 
   i18n.inputMethod = {
     enabled = "fcitx5";
+
+    # waylandFrontend = true;
+    fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
       fcitx5-gtk
       kdePackages.fcitx5-chinese-addons
       kdePackages.fcitx5-qt
       fcitx5-table-extra
+
+      rime-data
+      fcitx5-rime
     ];
   };
 }
