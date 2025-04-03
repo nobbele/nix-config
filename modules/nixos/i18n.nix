@@ -6,8 +6,9 @@
   console.useXkbConfig = true;
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
-
+    enable = true;
+    type = "fcitx5";
+    
     # waylandFrontend = true;
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [

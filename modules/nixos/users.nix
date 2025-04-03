@@ -16,12 +16,13 @@
       unstable.qbittorrent
       gimp
       inputs.zen-browser.packages."${system}".specific
-      gnome.cheese
+      cheese
       obs-studio
       kdenlive
       unstable.kanata
       inkscape
       libreoffice-qt
+      protonup-qt
 
       # Dev
       nil
@@ -47,9 +48,10 @@
       winetricks
       corefonts
       wineWowPackages.staging
+      unstable.itgmania
 
       # Game Dev
-      unstable.godot_4-mono
+      # unstable.godot_4-mono
       unityhub
       blender
 

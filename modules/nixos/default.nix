@@ -15,6 +15,10 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-7.0.410"
+  ];
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
@@ -52,8 +56,10 @@
 
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.draganddrop = true;
+  virtualisation.virtualbox.guest.dragAndDrop = true;
   users.extraGroups.vboxusers.members = [ "nobbele" ];
+
+  hardware.opentabletdriver.enable = true;
 
   # security.pam.loginLimits = [
   #   { domain = "@audio"; item = "memlock"; type = "-"   ; value = "unlimited"; }

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 {
   imports = [
@@ -15,9 +15,18 @@
       bat
       ripgrep
       lsd
-      inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+      (inputs.nix-gaming.packages."${system}".osu-lazer-bin.override {
+        pipewire_latency = "256/48000";
+      })
       csharpier
+      pdfpc
     ];
+
+    file."${config.xdg.configHome}/${{
+      "vscode" = "Code";
+      "vscode-insiders" = "Code - Insiders";
+      "vscodium" = "VSCodium";
+    }.${config.programs.vscode.package.pname}}/User/settings.json".force = true;
   };
 
   programs = {
