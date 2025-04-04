@@ -27,5 +27,8 @@
     pkg-config
     unrar
     pkgsi686Linux.gperftools
+
+    mymake
+    storm-lang
   ];
 }

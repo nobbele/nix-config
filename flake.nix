@@ -13,27 +13,25 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let
-    nixpkgs-overlays = {
-      overlay-unstable = final: prev: {
-        unstable = import inputs.nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-          config.permittedInsecurePackages = [
-            "dotnet-sdk-6.0.428"
-          ];
-        };
-      };
-    };
+    inherit (self) outputs;
+    system = "x86_64-linux";
+
+    nixpkgs-overlays = import ./overlays { inherit inputs; };
 
     defaultSystem = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      specialArgs = { inherit inputs outputs; };
       modules = [
         ({ ... }: { nixpkgs.overlays = builtins.attrValues nixpkgs-overlays; })
         ./modules
       ];
-      specialArgs = { inherit inputs; };
     };
+
+    pkgs = import nixpkgs { inherit system; overlays = builtins.attrValues nixpkgs-overlays; };
   in {
+    packages.${system} = import ./pkgs pkgs;
+    # packages.${system} = import ./pkgs nixpkgs.legacyPackages.${system};
+    # overlays = import ./overlays { inherit inputs; };
+
     nixosConfigurations.delta = defaultSystem.extendModules {
       modules = [ ./hosts/delta.nix ];
     };
