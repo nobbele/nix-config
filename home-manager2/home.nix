@@ -11,6 +11,7 @@
   home = {
     username = "nobbele";
     homeDirectory = "/home/nobbele";
+    
     packages = with pkgs; [
       bat
       ripgrep

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -30,5 +30,7 @@
 
     mymake
     storm-lang
+
+    inputs.home-manager.packages.${pkgs.system}.default
   ];
 }

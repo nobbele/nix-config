@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, outputs, pkgs, ... }:
 
 {
   imports = [
@@ -10,6 +10,7 @@
     ./programs.nix
     ./services.nix
     ./users.nix
+    # ./home-manager.nix
     # inputs.nix-gaming.nixosModules.pipewireLowLatency
     # ./lemurs.nix
   ];
@@ -73,6 +74,5 @@
   #   KERNEL=="hpet", GROUP="audio"
   # '';
 
-  system.copySystemConfiguration = true;
   system.stateVersion = "24.05"; # Do not modify!!
 }

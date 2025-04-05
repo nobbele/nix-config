@@ -15,7 +15,7 @@
       vesktop
       unstable.qbittorrent
       gimp
-      inputs.zen-browser.packages."${system}".specific
+      # inputs.zen-browser.packages."${system}".specific
       cheese
       obs-studio
       kdenlive
