@@ -28,6 +28,7 @@ in
   home.packages = with pkgs; [
     nixd
     nixfmt-rfc-style
+    obsidian
   ];
 
   home.sessionVariables = {

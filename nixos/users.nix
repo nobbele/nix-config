@@ -1,9 +1,12 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.nobbele = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" ];
+    extraGroups = [
+      "wheel"
+      "audio"
+    ];
     packages = with pkgs; [
       bitwarden-desktop
       discord-canary
@@ -30,16 +33,18 @@
       tokei
       eigen
       (unstable.jetbrains.rider.overrideAttrs (attrs: {
-        postInstall = (attrs.postInstall or "") + lib.optionalString (stdenv.hostPlatform.isLinux) ''
-          (
-            cd $out/rider
+        postInstall =
+          (attrs.postInstall or "")
+          + lib.optionalString (stdenv.hostPlatform.isLinux) ''
+            (
+              cd $out/rider
 
-            for dir in lib/ReSharperHost/linux-*; do
-              rm -rf $dir/dotnet
-              ln -s ${dotnetCorePackages.sdk_8_0} $dir/dotnet 
-            done
-          )
-        '';
+              for dir in lib/ReSharperHost/linux-*; do
+                rm -rf $dir/dotnet
+                ln -s ${dotnetCorePackages.sdk_8_0} $dir/dotnet
+              done
+            )
+          '';
       }))
 
       # Games
