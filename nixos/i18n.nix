@@ -1,14 +1,15 @@
-{ pkgs, ... }:
-
-{
-  services.xserver.xkb = { layout = "se"; variant = "nodeadkeys"; };
+{pkgs, ...}: {
+  services.xserver.xkb = {
+    layout = "se";
+    variant = "nodeadkeys";
+  };
   i18n.defaultLocale = "en_US.UTF-8";
   console.useXkbConfig = true;
 
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    
+
     # waylandFrontend = true;
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [

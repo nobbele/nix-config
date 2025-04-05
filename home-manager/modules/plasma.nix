@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   config = {
     home.file = {
       "${config.home.homeDirectory}/.config/plasma-workspace/env/path.sh" = {

@@ -1,9 +1,10 @@
-{ lib, config, ... }:
-
-let
-  shellCfg = config.terminal.shell;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  shellCfg = config.terminal.shell;
+in {
   options.terminal.shell = {
     alises = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
@@ -18,12 +19,14 @@ in
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
-      shellAliases = {
-        cd = "z";
-        ls = "eza";
-        cat = "bat";
-        grep = "rg --color=auto";
-      } // shellCfg.alises;
+      shellAliases =
+        {
+          cd = "z";
+          ls = "eza";
+          cat = "bat";
+          grep = "rg --color=auto";
+        }
+        // shellCfg.alises;
 
       initExtra = ''
         unsetopt BEEP

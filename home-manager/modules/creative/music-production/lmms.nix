@@ -3,13 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   creativeCfg = config.creative;
-in
-{
+in {
   config = lib.mkIf (creativeCfg.daw == "lmms") {
-    home.glPackages = with pkgs; [ lmms ];
+    home.glPackages = with pkgs; [lmms];
   };
 }

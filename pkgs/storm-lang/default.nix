@@ -1,6 +1,11 @@
-{ stdenv, fetchgit, lib, pkgs }:
+{
+  stdenv,
+  fetchgit,
+  lib,
+  pkgs,
+}:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "storm-lang"; 
+  pname = "storm-lang";
   version = "0.6.30";
 
   src = fetchgit {
@@ -10,7 +15,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-1xUXHjUrHDKJPej+rcTOGe7PlSYpsv4oBFjOw1XoGKY=";
   };
 
-  patches = [ 
+  patches = [
     ./no-copy-libs.patch
     # ./shebang-fix.patch
   ];

@@ -1,6 +1,9 @@
-{ pkgs, inputs, config, ... }:
-
 {
+  pkgs,
+  inputs,
+  config,
+  ...
+}: {
   security.pam.services.lemurs = {
     allowNullPassword = true;
     startSession = true;
@@ -11,8 +14,8 @@
   systemd.defaultUnit = "graphical.target";
 
   systemd.services.lemurs = {
-    aliases = [ "display-manager.service" ];
-    
+    aliases = ["display-manager.service"];
+
     unitConfig = {
       Wants = [
         "systemd-user-sessions.service"
@@ -34,7 +37,7 @@
       in ''
         ${inputs.lemurs.packages."${pkgs.system}".default}/bin/lemurs \
           --xsessions ${sessionData.desktops.outPath}/share/xsessions \
-	        --wlsessions ${sessionData.desktops.outPath}/share/wayland-sessions \
+         --wlsessions ${sessionData.desktops.outPath}/share/wayland-sessions \
       '';
 
       StandardInput = "tty";
@@ -47,6 +50,6 @@
 
     restartIfChanged = false;
 
-    wantedBy = [ "graphical.target" ];
+    wantedBy = ["graphical.target"];
   };
 }

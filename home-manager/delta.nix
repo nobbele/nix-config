@@ -1,9 +1,6 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   flakePath = "/home/nobbele/.nixos";
-in
-{
+in {
   nixGL.defaultWrapper = "mesa";
 
   terminal.shell.alises = {
@@ -25,10 +22,10 @@ in
     cmake
     (
       with dotnetCorePackages;
-      combinePackages [
-        sdk_7_0
-        sdk_8_0
-      ]
+        combinePackages [
+          sdk_7_0
+          sdk_8_0
+        ]
     )
     nodejs
     icu
@@ -37,16 +34,12 @@ in
 
     # User programs.
     macchina
-    # inputs.zen-browser.packages."${system}".specific
     cheese
     unstable.kanata
-    # inkscape
-    libreoffice-qt
     protonup-qt
 
     # Dev
     rustup
-    # eigen
     # (unstable.jetbrains.rider.overrideAttrs (attrs: {
     #   postInstall =
     #     (attrs.postInstall or "")
@@ -63,8 +56,6 @@ in
     # }))
 
     # Games
-    lutris
-    prismlauncher
     winetricks
     corefonts
     wineWowPackages.staging

@@ -1,6 +1,10 @@
-{ stdenv, fetchgit, lib }:
+{
+  stdenv,
+  fetchgit,
+  lib,
+}:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "mymake"; 
+  pname = "mymake";
   version = "2.3.6";
 
   src = fetchgit {

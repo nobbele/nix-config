@@ -1,9 +1,6 @@
-{ ... }:
-
-let
+{...}: let
   flakePath = "/home/nobbele/nix-config";
-in
-{
+in {
   nixGL.defaultWrapper = "nvidia";
 
   terminal.shell.alises = {

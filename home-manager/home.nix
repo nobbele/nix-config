@@ -1,8 +1,11 @@
-{ pkgs, specialArgs, ... }:
-let
-  inherit (specialArgs) isNixOS;
-in
 {
+  pkgs,
+  specialArgs,
+  inputs,
+  ...
+}: let
+  inherit (specialArgs) isNixOS;
+in {
   imports = [
     ./modules
     ./options.nix
@@ -11,12 +14,13 @@ in
 
   home.packages = with pkgs; [
     nixd
-    nixfmt-rfc-style
+    alejandra
     kdePackages.polkit-kde-agent-1
   ];
 
-  home.sessionVariables = {
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
+  home.sessionVariables = {
   };
 
   nixpkgs.config = {

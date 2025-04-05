@@ -11,76 +11,69 @@
     # zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
 
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "x86_64-linux"
-      ];
+    forAllSystems = nixpkgs.lib.genAttrs [
+      "x86_64-linux"
+    ];
 
-      nixpkgs-overlays = import ./overlays { inherit inputs; };
+    nixpkgs-overlays = import ./overlays {inherit inputs;};
 
-      pkgsForSystem =
-        system:
-        import nixpkgs {
-          overlays = builtins.attrValues nixpkgs-overlays;
-          inherit system;
-        };
-    in
-    {
-      # legacyPackages = pkgsForSystem system;
-      packages = forAllSystems (system: import ./pkgs (pkgsForSystem system));
+    pkgsForSystem = system:
+      import nixpkgs {
+        overlays = builtins.attrValues nixpkgs-overlays;
+        inherit system;
+      };
+  in {
+    # legacyPackages = pkgsForSystem system;
+    packages = forAllSystems (system: import ./pkgs (pkgsForSystem system));
 
-      nixosConfigurations =
-        let
-          defaultSystem = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs; };
-            modules = [
-              (
-                { ... }:
-                {
-                  nixpkgs.overlays = builtins.attrValues nixpkgs-overlays;
-                }
-              )
-              ./nixos/configuration.nix
-            ];
-          };
-        in
-        {
-          delta = defaultSystem.extendModules {
-            modules = [ ./nixos/hosts/delta.nix ];
-          };
-        };
-
-      homeConfigurations."nobbele@delta" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsForSystem "x86_64-linux";
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          isNixOS = true;
-        };
+    nixosConfigurations = let
+      defaultSystem = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
         modules = [
-          ./home-manager/home.nix
-          ./home-manager/delta.nix
+          (
+            {...}: {
+              nixpkgs.overlays = builtins.attrValues nixpkgs-overlays;
+            }
+          )
+          ./nixos/configuration.nix
         ];
       };
-
-      homeConfigurations."nobbele@beta" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsForSystem "x86_64-linux";
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          isNixOS = false;
-        };
-        modules = [
-          ./home-manager/home.nix
-          ./home-manager/beta.nix
-        ];
+    in {
+      delta = defaultSystem.extendModules {
+        modules = [./nixos/hosts/delta.nix];
       };
     };
+
+    homeConfigurations."nobbele@delta" = home-manager.lib.homeManagerConfiguration {
+      pkgs = pkgsForSystem "x86_64-linux";
+      extraSpecialArgs = {
+        inherit inputs outputs;
+        isNixOS = true;
+      };
+      modules = [
+        ./home-manager/home.nix
+        ./home-manager/delta.nix
+      ];
+    };
+
+    homeConfigurations."nobbele@beta" = home-manager.lib.homeManagerConfiguration {
+      pkgs = pkgsForSystem "x86_64-linux";
+      extraSpecialArgs = {
+        inherit inputs outputs;
+        isNixOS = false;
+      };
+      modules = [
+        ./home-manager/home.nix
+        ./home-manager/beta.nix
+      ];
+    };
+  };
 }

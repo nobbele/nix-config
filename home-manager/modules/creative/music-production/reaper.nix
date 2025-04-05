@@ -3,13 +3,10 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   creativeCfg = config.creative;
-in
-{
+in {
   config = lib.mkIf (creativeCfg.daw == "reaper") {
-    home.glPackages = with pkgs; [ reaper ];
+    home.glPackages = with pkgs; [reaper];
   };
 }

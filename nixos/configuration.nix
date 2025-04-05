@@ -1,6 +1,9 @@
-{ inputs, outputs, pkgs, ... }:
-
 {
+  inputs,
+  outputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./boot.nix
     ./environment.nix
@@ -34,7 +37,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-  
+
   nix.gc = {
     automatic = true;
     dates = "daily";
@@ -58,7 +61,7 @@
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.dragAndDrop = true;
-  users.extraGroups.vboxusers.members = [ "nobbele" ];
+  users.extraGroups.vboxusers.members = ["nobbele"];
 
   hardware.opentabletdriver.enable = true;
 

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   users.users.nobbele = {
     isNormalUser = true;
     extraGroups = [

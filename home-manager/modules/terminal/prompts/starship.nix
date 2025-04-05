@@ -2,12 +2,9 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   terminalCfg = config.terminal;
-in
-{
+in {
   config = lib.mkIf (terminalCfg.prompt == "starship") {
     programs.starship = {
       enable = true;
