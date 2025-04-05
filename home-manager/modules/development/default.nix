@@ -1,15 +1,13 @@
-{ lib, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./vscode.nix
   ];
 
-#   options.development = {
-#     vscode = lib.mkEnableOption "vscode";
-#   };
-
-#   config = {
-#
-#   };
+  config = {
+    home.packages = with pkgs; [
+      tokei
+    ];
+  };
 }

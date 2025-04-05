@@ -1,14 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
-let
-  vscodeCfg = config.development.vscode;
-in
 {
-  options.development.vscode = {
-    enabled = lib.mkEnableOption "vscode";
-  };
-
-  config = lib.mkIf vscodeCfg.enabled {
+  config =  {
     programs.vscode = {
       enable = true;
       # extensions = with pkgs.vscode-extensions; [

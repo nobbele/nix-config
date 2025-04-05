@@ -1,9 +1,11 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+  home.glPackages = with pkgs; [
     obsidian
     neovim
-    aseprite
+    vesktop
+    qbittorrent
+    bitwarden-desktop
   ];
 }

@@ -10,8 +10,6 @@ let
 in
 {
   config = lib.mkIf (creativeCfg.daw == "reaper") {
-    home.packages = with pkgs; [
-      (config.lib.nixGL.wrap reaper)
-    ];
+    home.glPackages = with pkgs; [ reaper ];
   };
 }

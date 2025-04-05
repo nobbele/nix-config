@@ -1,4 +1,8 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 
 let
   inherit (config.lib) nixGL;
@@ -11,11 +15,12 @@ in
     ./games
     ./xdg.nix
     ./development
+    ./gl.nix
   ];
 
   config = {
-    home.packages = with pkgs; [
-      (nixGL.wrap qimgv)
+    home.glPackages = with pkgs; [
+      qimgv
     ];
 
     programs.obs-studio = {

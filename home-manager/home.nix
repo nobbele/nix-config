@@ -3,8 +3,8 @@ let
   inherit (specialArgs) isNixOS;
 in
 {
-  imports = [ 
-    ./modules 
+  imports = [
+    ./modules
     ./options.nix
     ./shared.nix
   ];
@@ -18,8 +18,6 @@ in
   home.sessionVariables = {
 
   };
-
-  nixGL.packages = import <nixgl> { inherit pkgs; };
 
   nixpkgs.config = {
     allowUnfree = true;

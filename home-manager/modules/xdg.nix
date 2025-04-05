@@ -67,25 +67,27 @@ let
     pdf = mkDefaultAppEntry "pdf" [ "application/pdf" ];
   };
 
-  defaultApplications' = builtins.listToAttrs (
-    builtins.concatLists (
-      lib.mapAttrsToList (
-        _: value:
-        builtins.map (mimeType: {
-          name = mimeType;
-          value = value.application;
-        }) value.mimeTypes
-      ) defaultApplications
+  defaultApplications' =
+    defaultApplications
+    |> lib.mapAttrsToList (
+      _: value:
+      builtins.map (mimeType: {
+        name = mimeType;
+        value = value.application;
+      }) value.mimeTypes
     )
-  );
+    |> builtins.concatLists
+    |> builtins.listToAttrs;
 in
 {
-  options.defaultApplications = builtins.mapAttrs (
-    name: _:
-    lib.mkOption {
-      type = lib.types.str;
-    }
-  ) defaultApplications;
+  options.defaultApplications =
+    defaultApplications
+    |> builtins.mapAttrs (
+      name: _:
+      lib.mkOption {
+        type = lib.types.str;
+      }
+    );
 
   config = {
     xdg.configFile."mimeapps.list".force = true;
