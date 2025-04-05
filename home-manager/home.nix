@@ -43,7 +43,7 @@ in
     ];
   };
   programs.home-manager.enable = true;
-  targets.genericLinux.enable = true;
+  targets.genericLinux.enable = !isNixOS;
   home.username = "nobbele";
   home.homeDirectory = "/home/nobbele";
   home.stateVersion = "24.11";
