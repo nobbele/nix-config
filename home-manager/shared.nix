@@ -7,7 +7,6 @@
 in {
   home.glPackages = with pkgs; [
     obsidian
-    neovim
     vesktop
     qbittorrent
     bitwarden-desktop
@@ -20,5 +19,14 @@ in {
     plugins = with pkgs.obs-studio-plugins; [
       obs-pipewire-audio-capture
     ];
+  };
+
+  programs.neovim = {
+    enable = true;
+    package = nixGL.wrap pkgs.neovim-unwrapped;
+
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
   };
 }

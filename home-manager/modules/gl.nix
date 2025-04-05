@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }: {
   options.home.glPackages = lib.mkOption {
@@ -13,6 +14,6 @@
   config = {
     home.packages = map config.lib.nixGL.wrap config.home.glPackages;
 
-    nixGL.packages = import <nixgl> {inherit pkgs;};
+    nixGL.packages = import inputs.nixgl {inherit pkgs;};
   };
 }
