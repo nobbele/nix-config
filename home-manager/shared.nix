@@ -13,6 +13,10 @@ in {
     qimgv
   ];
 
+  home.packages = with pkgs; [
+    storm-lang
+  ];
+
   programs.obs-studio = {
     enable = true;
     package = nixGL.wrap pkgs.obs-studio;
