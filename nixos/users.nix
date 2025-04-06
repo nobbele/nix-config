@@ -5,7 +5,6 @@
       "wheel"
       "audio"
     ];
-    # packages = with pkgs; [ ];
 
     shell = pkgs.zsh;
   };

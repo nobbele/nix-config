@@ -8,14 +8,11 @@
     ./boot.nix
     ./environment.nix
     ./i18n.nix
-    ./networking.nix
     ./packages.nix
     ./programs.nix
     ./services.nix
     ./users.nix
-    # ./home-manager.nix
     # inputs.nix-gaming.nixosModules.pipewireLowLatency
-    # ./lemurs.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -24,7 +21,7 @@
   ];
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = ["nix-command" "flakes" "pipe-operators"];
     auto-optimise-store = true;
 
     substituters = [
@@ -58,12 +55,13 @@
     dockerCompat = true;
   };
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.dragAndDrop = true;
-  users.extraGroups.vboxusers.members = ["nobbele"];
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.dragAndDrop = true;
+  # users.extraGroups.vboxusers.members = ["nobbele"];
 
-  hardware.opentabletdriver.enable = true;
+  # hardware.opentabletdriver.enable = true;
+  networking.networkmanager.enable = true;
 
   # security.pam.loginLimits = [
   #   { domain = "@audio"; item = "memlock"; type = "-"   ; value = "unlimited"; }
