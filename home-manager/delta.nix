@@ -37,25 +37,12 @@ in {
     # User programs.
     macchina
     cheese
-    # unstable.kanata
     protonup-qt
 
     # Dev
     rustup
-    # (unstable.jetbrains.rider.overrideAttrs (attrs: {
-    #   postInstall =
-    #     (attrs.postInstall or "")
-    #     + lib.optionalString (stdenv.hostPlatform.isLinux) ''
-    #       (
-    #         cd $out/rider
 
-    #         for dir in lib/ReSharperHost/linux-*; do
-    #           rm -rf $dir/dotnet
-    #           ln -s ${dotnetCorePackages.sdk_8_0} $dir/dotnet
-    #         done
-    #       )
-    #     '';
-    # }))
+    nerd-fonts.jetbrains-mono
 
     # Games
     winetricks

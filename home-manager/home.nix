@@ -16,8 +16,6 @@ in {
   home.packages = with pkgs; [
     nixd
     alejandra
-    # kdePackages.polkit-kde-agent-1
-    nerd-fonts.jetbrains-mono
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
