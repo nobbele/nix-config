@@ -62,6 +62,9 @@
 
   # hardware.opentabletdriver.enable = true;
   networking.networkmanager.enable = true;
+  security.pam.services.hyprlock = {};
+
+  # networking.firewall.allowedTCPPorts = [ 1701 9001 ];
 
   # security.pam.loginLimits = [
   #   { domain = "@audio"; item = "memlock"; type = "-"   ; value = "unlimited"; }

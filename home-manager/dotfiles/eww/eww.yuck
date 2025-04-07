@@ -1,0 +1,84 @@
+(deflisten window_title :initial "..." "scripts/get-window-title")
+(deflisten window_xwayland :initial false "scripts/get-window-xwayland")
+(defwidget window_w []
+  (box :class "window_w"
+    (label :text "${window_title}${window_xwayland ? " (XWayland)" : ""}"
+		:visible {window_title != ""}
+	)
+  )
+)
+
+(deflisten workspaces :initial "[]" "scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "scripts/get-active-workspace")
+(defwidget workspaces []
+  (box :class "workspaces"
+    (label :text "${workspaces}${current_workspace}" :visible false)
+    (for workspace in workspaces
+      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""}"
+          :width 30
+          :height 30
+          (label :text "${workspace.name}")
+        )
+      )
+    )
+  )
+)
+
+(defwidget logo [?halign]
+  (image :class "logo"
+    :path "nix-logo.svg"
+    :image-width 25
+    :image-height 25
+  )
+)
+
+(defwidget island-left []
+  (box :class "island-left island"
+    :halign "start"
+    :spacing 5
+    :space-evenly false
+    (logo)
+    (box :class "vrule")
+    (workspaces)
+  )
+)
+
+(defwidget island-middle []
+  (box :class "island-middle island"
+    :halign "center"
+    :spacing 5
+    :space-evenly false
+    (window_w)
+  )
+)
+
+(defwidget island-right []
+  (box :class "island-right island"
+    :halign "end"
+    :spacing 5
+    :space-evenly false
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Window Section's							 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defwindow bar-main
+  :monitor 0
+  :exclusive true
+  :stacking "fg"
+  :windowtype "dock"
+  :geometry (geometry
+    :x "0"
+    :y "0"
+    :height "40px"
+    :width "100%"
+  :anchor "top center")
+  (box :class "bar-main-box"
+    :spacing 10
+    (island-left)
+    (island-middle)
+    (island-right)
+  )
+)

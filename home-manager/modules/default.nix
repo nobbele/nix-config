@@ -7,5 +7,7 @@
     ./xdg.nix
     ./development
     ./gl.nix
+    ./hyprland.nix
+    ./hyprlock
   ];
 }

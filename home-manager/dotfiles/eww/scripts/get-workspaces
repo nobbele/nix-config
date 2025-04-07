@@ -1,0 +1,10 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p jq socat
+spaces (){
+  hyprctl workspaces -j | jq -Mc 'sort_by(.id) | map({ id: .id, name: .name, windows: .windows })'
+}
+
+spaces
+socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+  spaces
+done

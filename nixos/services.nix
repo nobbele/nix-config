@@ -24,6 +24,12 @@
     libinput.enable = true;
     automatic-timezoned.enable = true;
 
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.KbdInteractiveAuthentication = false;
+    };
+
     # openssh.enable = true;
     flatpak.enable = true;
     lorri.enable = true;

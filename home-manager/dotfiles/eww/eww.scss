@@ -1,0 +1,26 @@
+* {
+    all: unset;
+    font-family: "JetBrainsMono Nerd Font, JetBrainsMono NF";
+}
+
+.bar-main-box {
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.island {
+    background-color: rgba(253, 183, 234, 0.7);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.vrule {
+    border-left: 1px solid black;
+}
+
+.workspace-entry {    
+    &.current {
+        background-color: #826aaf;
+        font-weight: bold;
+    }
+}

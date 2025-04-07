@@ -8,6 +8,8 @@ in {
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";
   };
 
+  custom.hyprland.enable = true;
+
   home.packages = with pkgs; [
     wget
     git
@@ -35,7 +37,7 @@ in {
     # User programs.
     macchina
     cheese
-    unstable.kanata
+    # unstable.kanata
     protonup-qt
 
     # Dev
@@ -59,6 +61,6 @@ in {
     winetricks
     corefonts
     wineWowPackages.staging
-    unstable.itgmania
+    # unstable.itgmania
   ];
 }

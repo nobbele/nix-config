@@ -7,6 +7,7 @@
     ./ghostty.nix
     ./wezterm.nix
     ./kitty.nix
+    ./foot.nix
   ];
 
   options.terminal.emulator = lib.mkOption {
@@ -15,6 +16,7 @@
         "ghostty"
         "wezterm"
         "kitty"
+        "foot"
       ]
     );
     default = null;

@@ -12,15 +12,18 @@ in {
     ./shared.nix
   ];
 
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     nixd
     alejandra
-    kdePackages.polkit-kde-agent-1
+    # kdePackages.polkit-kde-agent-1
+    nerd-fonts.jetbrains-mono
   ];
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
   };
 
   nixpkgs.config = {

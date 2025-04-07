@@ -11,6 +11,7 @@ in {
     qbittorrent
     bitwarden-desktop
     qimgv
+    xorg.xeyes
   ];
 
   home.packages = with pkgs; [
