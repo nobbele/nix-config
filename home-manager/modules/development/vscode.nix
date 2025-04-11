@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }: {
   config = {
@@ -21,6 +20,8 @@
       after = ["writeBoundary"];
       before = [];
       data = ''
+        echo ${configPath}
+        echo $(readlink ${configPath})
         install -m 0640 "$(readlink ${configPath})" ${configPath}
       '';
     };

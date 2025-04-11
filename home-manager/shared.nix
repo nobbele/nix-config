@@ -16,6 +16,8 @@ in {
 
   home.packages = with pkgs; [
     storm-lang
+    nixpkgs-review
+    gh
   ];
 
   programs.obs-studio = {
@@ -33,5 +35,9 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+
+  programs.direnv = {
+    enable = true;
   };
 }

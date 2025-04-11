@@ -4,14 +4,20 @@
   pkgs,
   ...
 }: let
+  inherit (config.lib) nixGL;
   cfgHyprland = config.custom.hyprland;
 
   terminalBinary = "${pkgs.foot}/bin/foot";
   appLauncherBinary = "${pkgs.fuzzel}/bin/fuzzel";
+
 in {
   options.custom.hyprland = {
     enable = lib.mkEnableOption "hyprland";
   };
+
+  imports = [
+    ./hyprlock
+  ];
 
   config = lib.mkIf cfgHyprland.enable {
     home.packages = with pkgs; [
@@ -43,7 +49,7 @@ in {
 
     programs.eww = {
       enable = true;
-      configDir = ../dotfiles/eww;
+      configDir = ../../dotfiles/eww;
     };
 
     programs.fuzzel = {
@@ -61,14 +67,15 @@ in {
       enable = true;
       xwayland.enable = true;
 
-      package = null;
-      portalPackage = null;
+      # package = nixGL.wrap pkgs.hyprland;
+      # portalPackage = nixGL.wrap pkgs.xdg-desktop-portal-hyprland;
 
       settings = let
         startupScript = pkgs.pkgs.writeShellScript "start" ''
           systemctl --user start hyprpolkitagent
-          ${pkgs.waybar}/bin/waybar &
-          ${pkgs.hyprpaper}/bin/hyprpaper &
+          eww daemon
+          eww open bar-main
+          hyprpaper &
         '';
       in {
         exec-once = "${startupScript}";
@@ -83,6 +90,8 @@ in {
           kb_layout = "se";
           kb_variant = "nodeadkeys";
         };
+
+        cursor.no_hardware_cursors = 1;
 
         "$mod" = "SUPER";
         bind =

@@ -46,7 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
     cp -r release/* $STORM_PATH/
     cp -r root/ $STORM_PATH/
 
-    ln -s $out/opt/storm/Storm $out/bin/Storm
+    ln -s $out/opt/storm/Storm $out/bin/storm
   '';
 
   meta = {

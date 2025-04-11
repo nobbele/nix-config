@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
-let
+{
+  lib,
+  config,
+  ...
+}: let
   mkDefaultAppEntry = name: mimeTypes: {
     application = config.defaultApplications."${name}";
     inherit mimeTypes;
@@ -63,39 +65,41 @@ let
       "x-scheme-handler/http"
       "text/html"
     ];
-    file-explorer = mkDefaultAppEntry "file-explorer" [ "inode/directory" ];
-    pdf = mkDefaultAppEntry "pdf" [ "application/pdf" ];
+    file-explorer = mkDefaultAppEntry "file-explorer" ["inode/directory"];
+    pdf = mkDefaultAppEntry "pdf" ["application/pdf"];
   };
 
-  defaultApplications' =
-    defaultApplications
-    |> lib.mapAttrsToList (
-      _: value:
-      builtins.map (mimeType: {
-        name = mimeType;
-        value = value.application;
-      }) value.mimeTypes
+  defaultApplications' = builtins.listToAttrs (
+    builtins.concatLists (
+      lib.mapAttrsToList (
+        _: value:
+          builtins.map (mimeType: {
+            name = mimeType;
+            value = value.application;
+          })
+          value.mimeTypes
+      )
+      defaultApplications
     )
-    |> builtins.concatLists
-    |> builtins.listToAttrs;
-in
-{
-  options.defaultApplications =
-    defaultApplications
-    |> builtins.mapAttrs (
-      name: _:
+  );
+in {
+  options.defaultApplications = builtins.mapAttrs (
+    name: _:
       lib.mkOption {
         type = lib.types.str;
       }
-    );
+  )
+  defaultApplications;
 
   config = {
     xdg.configFile."mimeapps.list".force = true;
     xdg.mimeApps = {
       enable = true;
-      defaultApplications = defaultApplications' // {
-        "application/pdf" = [ "brave-browser.desktop" ];
-      };
+      defaultApplications =
+        defaultApplications'
+        // {
+          "application/pdf" = ["brave-browser.desktop"];
+        };
     };
   };
 }
