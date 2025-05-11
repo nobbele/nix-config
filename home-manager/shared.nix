@@ -16,6 +16,7 @@ in {
 
   home.packages = with pkgs; [
     storm-lang
+    mymake
     nixpkgs-review
     gh
   ];

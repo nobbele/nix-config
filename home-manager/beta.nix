@@ -10,4 +10,8 @@ in {
   terminal.shell.alises = {
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";
   };
+
+  home.sessionPath = [
+    "/opt/outfox/"
+  ];
 }

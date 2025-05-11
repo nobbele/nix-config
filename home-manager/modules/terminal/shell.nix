@@ -23,8 +23,12 @@ in {
 
       shellAliases = shellCfg.alises;
 
-      initExtra = ''
+      initContent = ''
         unsetopt BEEP
+
+        bindkey  "^[[H"   beginning-of-line
+        bindkey  "^[[F"   end-of-line
+        bindkey  "^[[3~"  delete-char
       '';
 
       history.size = 10000;

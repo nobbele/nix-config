@@ -53,6 +53,6 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Mymake is a tool to build C/C++-programs that requires close to no configuration.";
     homepage = "https://github.com/fstromback/mymake";
     license = lib.licenses.mit;
-    mainProgram = "mm";
+    mainProgram = "storm";
   };
 })

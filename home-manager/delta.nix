@@ -13,6 +13,7 @@ in {
   # wayland.windowManager.hyprland.portalPackage = null;
 
   home.packages = with pkgs; [
+    lutris
     wget
     git
     htop
