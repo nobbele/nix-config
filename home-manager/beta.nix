@@ -3,9 +3,14 @@
 in {
   nixGL.defaultWrapper = "nvidia";
 
-  custom.hyprland.enable = true;
-  wayland.windowManager.hyprland.package = null;
-  wayland.windowManager.hyprland.portalPackage = null;
+  custom.flakePath = flakePath;
+
+  # custom.hyprland.enable = true;
+  # wayland.windowManager.hyprland.package = null;
+  # wayland.windowManager.hyprland.portalPackage = null;
+
+  # custom.helix.enable = true;
+  custom.emacs.enable = true;
 
   terminal.shell.alises = {
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";

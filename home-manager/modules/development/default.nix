@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./vscode.nix
+    ./helix.nix
+    ./emacs.nix
   ];
 
   config = {

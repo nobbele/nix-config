@@ -14,6 +14,8 @@ in {
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    pkgs.nerd-fonts.symbols-only
+
     nixd
     alejandra
   ];
