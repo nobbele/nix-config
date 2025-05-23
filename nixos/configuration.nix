@@ -60,9 +60,11 @@
   # virtualisation.virtualbox.guest.dragAndDrop = true;
   # users.extraGroups.vboxusers.members = ["nobbele"];
 
-  # hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.enable = true;
   networking.networkmanager.enable = true;
   security.pam.services.hyprlock = {};
+  security.pam.services.sddm.enableKwallet = true;
+  # services.printing.enable = true;
 
   # networking.firewall.allowedTCPPorts = [ 1701 9001 ];
 

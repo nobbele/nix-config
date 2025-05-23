@@ -12,6 +12,8 @@ in {
     bitwarden-desktop
     qimgv
     xorg.xeyes
+    prismlauncher
+    clonehero
   ];
 
   home.packages = with pkgs; [
