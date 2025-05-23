@@ -20,6 +20,14 @@ in {
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
+  home.shellAliases = {
+    cd = "z";
+    ls = "eza";
+    cat = "bat";
+    grep = "rg --color=auto";
+  }
+  ;
+
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
@@ -33,6 +41,7 @@ in {
   };
 
   programs.home-manager.enable = true;
+  
   targets.genericLinux.enable = !isNixOS;
   home.username = "nobbele";
   home.homeDirectory = "/home/nobbele";

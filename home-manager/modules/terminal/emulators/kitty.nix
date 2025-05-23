@@ -10,7 +10,6 @@ in {
     programs.kitty = {
       enable = true;
       package = config.lib.nixGL.wrap pkgs.kitty;
-      shellIntegration.enableZshIntegration = true;
     };
   };
 }

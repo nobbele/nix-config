@@ -8,9 +8,12 @@ in {
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";
   };
 
-  custom.hyprland.enable = true;
+  custom.hyprland.enable = false;
+  # wayland.windowManager.hyprland.package = null;
+  # wayland.windowManager.hyprland.portalPackage = null;
 
   home.packages = with pkgs; [
+    lutris
     wget
     git
     htop

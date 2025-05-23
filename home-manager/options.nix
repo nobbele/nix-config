@@ -1,6 +1,6 @@
 {...}: {
   terminal = {
-    emulator = "foot";
+    # emulator = "foot";
     prompt = "starship";
   };
 

@@ -13,23 +13,22 @@ in {
   };
 
   config = {
+    home.shell.enableZshIntegration = true;
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
-      shellAliases =
-        {
-          cd = "z";
-          ls = "eza";
-          cat = "bat";
-          grep = "rg --color=auto";
-        }
-        // shellCfg.alises;
+      shellAliases = shellCfg.alises;
 
-      initExtra = ''
+      initContent = ''
         unsetopt BEEP
+
+        bindkey  "^[[H"   beginning-of-line
+        bindkey  "^[[F"   end-of-line
+        bindkey  "^[[3~"  delete-char
       '';
 
       history.size = 10000;

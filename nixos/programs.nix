@@ -4,7 +4,6 @@
   ...
 }: {
   programs = {
-    direnv.enable = true;
     firefox = {
       enable = true;
       package = pkgs.firefox-bin;
