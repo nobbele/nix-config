@@ -40,7 +40,6 @@ in {
     unrar
 
     # User programs.
-    macchina
     cheese
     protonup-qt
 

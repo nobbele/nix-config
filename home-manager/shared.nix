@@ -11,7 +11,8 @@ in {
     bitwarden-desktop
     qimgv
     xorg.xeyes
-    teamspeak6-client
+    # teamspeak6-client
+    heroic
   ];
 
   home.packages = with pkgs; [
