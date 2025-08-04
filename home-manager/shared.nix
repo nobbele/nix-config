@@ -12,7 +12,6 @@ in {
     qimgv
     xorg.xeyes
     # teamspeak6-client
-    heroic
   ];
 
   home.packages = with pkgs; [

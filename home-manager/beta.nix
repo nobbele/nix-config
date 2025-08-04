@@ -10,7 +10,7 @@ in {
   # wayland.windowManager.hyprland.portalPackage = null;
 
   # custom.helix.enable = true;
-  custom.emacs.enable = true;
+  # custom.emacs.enable = true;
 
   # programs.hyfetch.settings.distro = "arch_small";
 

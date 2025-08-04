@@ -2,7 +2,7 @@
   imports = [
     ./vscode.nix
     ./helix.nix
-    ./emacs.nix
+    # ./emacs.nix
   ];
 
   config = {
