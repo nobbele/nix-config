@@ -1,2 +1,9 @@
 eln-cache/
 auto-save-list/
+elpa/
+.cache/
+**/*.el~
+easysession/
+.emacs.desktop
+.lsp-session-v1
+elisp-objects/
