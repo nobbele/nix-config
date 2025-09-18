@@ -1,0 +1,72 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "padding": {
+            "top": 0,
+            "left": 0,
+            "right": 6
+        }
+    },
+    "display": {
+        "constants": [
+            "██ "
+        ],
+        "key": {
+            "width": 12
+        },
+        "brightColor": true
+    },
+    "modules": [
+        "title",
+        "separator",
+        {
+            "key": "{$1}Kernel",
+            "keyColor": "#CF82FA",
+            "type": "kernel"
+        },
+        {
+            "key": "{$1}Uptime",
+            "keyColor": "#A82A48",
+            "type": "uptime"
+        },
+        // {
+        //     "key": "{$1}Shell",
+        //     "keyColor": "#82FABC",
+        //     "type": "shell"
+        // },
+        {
+            "key": "{$1}DE",
+            "keyColor": "#812AA8",
+            "type": "de"
+        },
+        {
+            "key": "{$1}CPU",
+            "keyColor": "#8FFA82",
+            "type": "cpu"
+        },
+        {
+            "key": "{$1}Memory",
+            "keyColor": "#82DAFA",
+            "type": "memory"
+        },
+        {
+            "key": "{$1}Swap",
+            "keyColor": "#82FAD8",
+            "type": "swap"
+        },
+        // {
+        //     "key": "{$1}Weather",
+        //     "keyWidth": 13,
+        //     "keyColor": "#82DAFA",
+        //     "type": "weather",
+        //     "timeout": 500
+        // },
+        {
+            "key": "{$1}Disk ({mountpoint})",
+            "keyWidth": 18,
+            "keyColor": "#FA82D0",
+            "type": "disk",
+            "format": "{size-used} / {size-total} ({size-percentage})"
+        }
+    ]
+}

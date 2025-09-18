@@ -3,12 +3,14 @@
 in {
   nixGL.defaultWrapper = "mesa";
 
+  custom.flakePath = flakePath;
+
   terminal.shell.alises = {
     rb = "sudo nixos-rebuild switch --flake ${flakePath} -I ${flakePath}/nixos/configuration.nix --impure";
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";
   };
 
-  custom.hyprland.enable = false;
+  # custom.hyprland.enable = false;
   # wayland.windowManager.hyprland.package = null;
   # wayland.windowManager.hyprland.portalPackage = null;
 
@@ -38,7 +40,6 @@ in {
     unrar
 
     # User programs.
-    macchina
     cheese
     protonup-qt
 
@@ -56,5 +57,6 @@ in {
     # unstable.itgmania
 
     spotify
+    vesktop
   ];
 }

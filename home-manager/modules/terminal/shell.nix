@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -14,7 +15,7 @@ in {
 
   config = {
     home.shell.enableZshIntegration = true;
-
+    
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -29,6 +30,8 @@ in {
         bindkey  "^[[H"   beginning-of-line
         bindkey  "^[[F"   end-of-line
         bindkey  "^[[3~"  delete-char
+
+        ${pkgs.hyfetch}/bin/hyfetch
       '';
 
       history.size = 10000;

@@ -7,20 +7,19 @@
 in {
   home.glPackages = with pkgs; [
     obsidian
-    vesktop
     qbittorrent
     bitwarden-desktop
     qimgv
     xorg.xeyes
+
     prismlauncher
-    clonehero
+    # clonehero
+    # teamspeak6-client
   ];
 
   home.packages = with pkgs; [
     storm-lang
     mymake
-    nixpkgs-review
-    gh
   ];
 
   programs.obs-studio = {
