@@ -6,6 +6,7 @@
   config = {
     home.packages = with pkgs; [
       tokei
+      xmake
     ];
   };
 }

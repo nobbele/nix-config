@@ -44,6 +44,8 @@ in {
 
     # Dev
     rustup
+    devenv
+    docker-compose
 
     nerd-fonts.jetbrains-mono
 
@@ -52,5 +54,7 @@ in {
     corefonts
     wineWowPackages.staging
     # unstable.itgmania
+
+    spotify
   ];
 }
