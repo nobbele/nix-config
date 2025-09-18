@@ -25,9 +25,9 @@ in {
       };  
     };
 
-    nixpkgs.overlays = [
-      inputs.emacs-overlay.overlays.default
-    ];
+    # nixpkgs.overlays = [
+    #   inputs.emacs-overlay.overlays.default
+    # ];
 
     services.emacs = {
       enable = true;

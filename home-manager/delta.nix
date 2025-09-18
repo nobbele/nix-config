@@ -10,6 +10,13 @@ in {
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";
   };
 
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
+  };
+
   # custom.hyprland.enable = false;
   # wayland.windowManager.hyprland.package = null;
   # wayland.windowManager.hyprland.portalPackage = null;
