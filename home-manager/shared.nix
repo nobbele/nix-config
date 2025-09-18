@@ -17,6 +17,8 @@ in {
     # teamspeak6-client
   ];
 
+  custom.emacs.enable = true;
+
   home.packages = with pkgs; [
     storm-lang
     mymake
