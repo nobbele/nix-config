@@ -31,6 +31,9 @@ in {
         bindkey  "^[[F"   end-of-line
         bindkey  "^[[3~"  delete-char
 
+        [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+          source "$EAT_SHELL_INTEGRATION_DIR/zsh"
+
         ${pkgs.hyfetch}/bin/hyfetch
       '';
 

@@ -10,12 +10,14 @@
   programs.hyfetch = {
     enable =  true;
     settings = {
-      preset = "demigirl";
+      preset = "rainbow";
       mode = "rgb";
       color_align = {
         mode = "horizontal";
       };
       backend = "fastfetch";
+      distro = "unicodearch";
+      pride_month_disable = false;
     };
   };
 }
