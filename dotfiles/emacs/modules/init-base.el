@@ -23,6 +23,7 @@
 (require 'init-treemacs)
 (require 'init-lsp)
 (require 'init-rust)
+(require 'init-term)
 
 (use-package psession
   :ensure t
