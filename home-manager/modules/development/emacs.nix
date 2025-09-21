@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   emacsCfg = config.custom.emacs;

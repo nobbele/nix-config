@@ -7,3 +7,6 @@ easysession/
 .emacs.desktop
 .lsp-session-v1
 elisp-objects/
+projectile-bookmarks.eld
+.local/
+recentf

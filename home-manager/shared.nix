@@ -22,6 +22,7 @@ in {
   home.packages = with pkgs; [
     storm-lang
     mymake
+    omnisharp-roslyn
   ];
 
   programs.obs-studio = {
