@@ -13,8 +13,8 @@ in {
     xorg.xeyes
 
     prismlauncher
-    # clonehero
-    # teamspeak6-client
+
+    teams-for-linux
   ];
 
   custom.emacs.enable = true;

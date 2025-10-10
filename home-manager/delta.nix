@@ -54,6 +54,7 @@ in {
     rustup
     devenv
     docker-compose
+    godot-mono
 
     nerd-fonts.jetbrains-mono
 
@@ -65,5 +66,7 @@ in {
 
     spotify
     vesktop
+
+    onlyoffice-desktopeditors
   ];
 }
