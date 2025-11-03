@@ -45,6 +45,7 @@
     pkgsForSystem = system:
       import nixpkgs {
         overlays = builtins.attrValues nixpkgs-overlays;
+        # stdenv.hostPlatform.system = system;
         inherit system;
       };
   in {

@@ -12,9 +12,7 @@ in {
 
   programs.gh = {
     enable = true;
-    gitCredentialHelper = {
-      enable = true;
-    };
+    gitCredentialHelper.enable = true;
   };
 
   # custom.hyprland.enable = false;

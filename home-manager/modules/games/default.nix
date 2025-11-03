@@ -4,7 +4,7 @@
 
   config = {
     home.glPackages = with pkgs; [
-      vintagestory
+      # vintagestory
       # prismlauncher
     ];
   };

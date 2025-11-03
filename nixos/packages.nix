@@ -4,10 +4,10 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    inputs.home-manager.packages.${pkgs.system}.default
+    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     killall
     # inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
-    (inputs.nix-gaming.packages."${system}".osu-lazer-bin.override {
+    (inputs.nix-gaming.packages."${pkgs.stdenv.hostPlatform.system}".osu-lazer-bin.override {
       command_prefix = '''';
       # command_prefix = ''
         # env PIPEWIRE_LATENCY="128/48000" OSU_SDL3=0 __GL_THREADED_OPTIMIZATIONS=0 PIPEWIRE_ALSA="{ alsa.buffer-bytes=1536 alsa.period-bytes=192 alsa.rate={min=48000 max=48000} alsa.format=S32_LE resample.disable=true }"'';
