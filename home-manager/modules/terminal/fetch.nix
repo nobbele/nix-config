@@ -16,7 +16,6 @@
         mode = "horizontal";
       };
       backend = "fastfetch";
-      distro = "unicodearch";
       pride_month_disable = false;
     };
   };

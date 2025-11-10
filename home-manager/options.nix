@@ -7,7 +7,7 @@
 
   config = {
     terminal = {
-      # emulator = "foot";
+      emulator = "foot";
       prompt = "starship";
     };
 
@@ -16,8 +16,8 @@
     };
 
     defaultApplications = {
-      video = "vlc.desktop";
-      audio = "vlc.desktop";
+      video = "mpv.desktop";
+      audio = "mpv.desktop";
       image = "qimgv.desktop";
       archive = "org.kde.ark.desktop";
       browser = "brave-browser.desktop";
