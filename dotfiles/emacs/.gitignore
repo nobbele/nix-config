@@ -10,3 +10,8 @@ elisp-objects/
 projectile-bookmarks.eld
 .local/
 recentf
+**/*.elc
+**/*~
+eshell/
+init-new.el
+init.el.bak

@@ -52,7 +52,6 @@ in {
 
     # Dev
     rustup
-    devenv
     docker-compose
     godot-mono
 

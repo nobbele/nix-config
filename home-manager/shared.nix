@@ -23,6 +23,7 @@ in {
     storm-lang
     mymake
     omnisharp-roslyn
+    devenv
   ];
 
   programs.obs-studio = {
