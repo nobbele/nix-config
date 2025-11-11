@@ -12,11 +12,11 @@ in {
   # custom.helix.enable = true;
   # custom.emacs.enable = true;
 
-  # programs.hyfetch.settings.distro = "arch_small";
-
   terminal.shell.alises = {
     rbh = "home-manager switch --flake ${flakePath}#$(whoami)@$(hostname) --impure";
   };
+
+  programs.hyfetch.settings.distro = "unicodearch";
 
   home.sessionPath = [
     "/opt/outfox/"

@@ -12,10 +12,10 @@ in {
 
   programs.gh = {
     enable = true;
-    gitCredentialHelper = {
-      enable = true;
-    };
+    gitCredentialHelper.enable = true;
   };
+
+  programs.hyfetch.settings.distro = "nixos";
 
   # custom.hyprland.enable = false;
   # wayland.windowManager.hyprland.package = null;
