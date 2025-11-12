@@ -33,7 +33,7 @@ in {
           mode = "horizontal";
         };
         backend = "fastfetch";
-        distro = distroMap.${selfCfg.distro};
+        distro = builtins.getAttr selfCfg.distro distroMap;
         pride_month_disable = false;
       };
     };

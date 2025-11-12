@@ -2,6 +2,7 @@
   lib,
   host,
   inputs,
+  config,
   ...
 }: {
   imports = [

@@ -5,6 +5,7 @@
   me.apps = {
     games.enable = true;
     games.extraEnable = true;
+    vscode.enable = true;
     creative.enable = true;
   };
 
