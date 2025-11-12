@@ -5,13 +5,13 @@
   ...
 }: {
   imports = [
-    ./gl.nix
     ./terminal
     ./apps
     ./dev
     ./plasma.nix
     ./xdg.nix
     ./cli
+    ./nvidia.nix
   ];
 
   options.me = {

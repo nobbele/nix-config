@@ -10,13 +10,9 @@
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = {nixgl, ...} @ inputs: let
+  outputs = inputs: let
     hosts = import ./hosts;
 
     mkHomeConfigurations = {
@@ -27,7 +23,6 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
-          overlays = [nixgl.overlay];
         };
         extraSpecialArgs = {
           inherit host;

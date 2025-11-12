@@ -11,7 +11,7 @@
   ];
 
   config = {
-    home.glPackages = with pkgs; [
+    home.packages = with pkgs; [
       qimgv
       qbittorrent
       bitwarden-desktop

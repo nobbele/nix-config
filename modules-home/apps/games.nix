@@ -12,7 +12,7 @@ in {
   };
 
   config = lib.mkIf selfCfg.enable {
-    home.glPackages = with pkgs; [
+    home.packages = with pkgs; [
       prismlauncher
     ];
   };

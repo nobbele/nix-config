@@ -5,7 +5,7 @@
   ...
 }:
 lib.mkOptionalModule config "me.apps.creative" {
-  home.glPackages = with pkgs; [
+  home.packages = with pkgs; [
     blender
     gimp
     krita

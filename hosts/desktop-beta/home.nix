@@ -1,6 +1,7 @@
 {config, ...}: {
   me.flakePath = config.home.homeDirectory + "/nix-config";
   me.fetch.distro = "arch";
+  me.nvidia.enable = true;
   me.dev.storm.enable = true;
   me.apps = {
     games.enable = true;
@@ -14,6 +15,6 @@
   ];
 
   targets.genericLinux.enable = true;
-  nixGL.defaultWrapper = "nvidia";
+  # nixGL.defaultWrapper = "nvidia";
   home.stateVersion = "24.11";
 }
