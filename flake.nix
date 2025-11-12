@@ -10,88 +10,66 @@
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # emacs-overlay = {
-    #   url = "github:nix-community/emacs-overlay";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    # };
-
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
+  outputs = inputs: let
+    hosts = import ./hosts;
 
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-    ];
-
-    nixpkgs-overlays = import ./overlays {inherit inputs;};
-
-    pkgsForSystem = system:
-      import nixpkgs {
-        overlays = builtins.attrValues nixpkgs-overlays;
-        # stdenv.hostPlatform.system = system;
-        inherit system;
-      };
-  in {
-    # legacyPackages = pkgsForSystem system;
-    packages = forAllSystems (system: import ./pkgs (pkgsForSystem system));
-
-    nixosConfigurations = let
-      defaultSystem = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+    mkHomeConfigurations = {
+      host,
+      nixpkgs,
+      home-manager,
+    }:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
+        extraSpecialArgs = {
+          inherit host;
+          inherit inputs;
+          lib = inputs.nixpkgs.lib.extend (self: super:
+            inputs.home-manager.lib
+            // (import ./lib.nix {lib = self;}));
+        };
         modules = [
-          (
-            {...}: {
-              nixpkgs.overlays = builtins.attrValues nixpkgs-overlays;
-            }
-          )
-          ./nixos/configuration.nix
+          ./modules-home
+          ./hosts/${host.dir}/home.nix
         ];
       };
-    in {
-      delta = defaultSystem.extendModules {
-        modules = [./nixos/hosts/delta.nix];
+
+    mkNixOSConfiguration = {
+      host,
+      nixpkgs,
+    }:
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit host;
+          inherit inputs;
+          lib = inputs.nixpkgs.lib.extend (self: super: (import ./lib.nix {lib = self;}));
+        };
+        modules = [
+          ./modules-nixos
+          ./hosts/${host.dir}/configuration.nix
+          ./hosts/${host.dir}/configuration-hardware.nix
+        ];
       };
+  in {
+    nixosConfigurations.${hosts.laptop-delta.hostname} = mkNixOSConfiguration {
+      host = hosts.laptop-delta;
+      nixpkgs = inputs.nixpkgs;
     };
 
-    homeConfigurations."nobbele@delta" = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsForSystem "x86_64-linux";
-      extraSpecialArgs = {
-        inherit inputs outputs;
-        isNixOS = true;
-      };
-      modules = [
-        ./home-manager/home.nix
-        ./home-manager/delta.nix
-      ];
+    homeConfigurations."${hosts.laptop-delta.username}@${hosts.laptop-delta.hostname}" = mkHomeConfigurations {
+      host = hosts.laptop-delta;
+      nixpkgs = inputs.nixpkgs;
+      home-manager = inputs.home-manager;
     };
 
-    homeConfigurations."nobbele@beta" = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsForSystem "x86_64-linux";
-      extraSpecialArgs = {
-        inherit inputs outputs;
-        isNixOS = false;
-      };
-      modules = [
-        ./home-manager/home.nix
-        ./home-manager/beta.nix
-      ];
+    homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfigurations {
+      host = hosts.desktop-beta;
+      nixpkgs = inputs.nixpkgs;
+      home-manager = inputs.home-manager;
     };
   };
 }

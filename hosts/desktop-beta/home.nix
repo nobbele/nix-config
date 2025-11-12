@@ -1,0 +1,20 @@
+{config, ...}: {
+  me.flakePath = config.home.homeDirectory + "/nix-config";
+  me.fetch.distro = "arch";
+  me.nvidia.enable = true;
+  me.dev.storm.enable = true;
+  me.apps = {
+    games.enable = true;
+    games.extraEnable = true;
+    vscode.enable = true;
+    creative.enable = true;
+  };
+
+  home.sessionPath = [
+    "/opt/outfox/"
+  ];
+
+  targets.genericLinux.enable = true;
+  # nixGL.defaultWrapper = "nvidia";
+  home.stateVersion = "24.11";
+}
