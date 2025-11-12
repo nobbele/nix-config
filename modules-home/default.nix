@@ -1,0 +1,31 @@
+{
+  lib,
+  host,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./gl.nix
+    ./terminal
+    ./apps
+    ./dev
+    ./plasma.nix
+    ./xdg.nix
+    ./cli
+  ];
+
+  options.me = {
+    flakePath = lib.mkOpt' lib.types.path;
+  };
+
+  config = {
+    home = {
+      username = host.username;
+      homeDirectory = "/home/${host.username}";
+    };
+
+    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
+    programs.home-manager.enable = true;
+  };
+}

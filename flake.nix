@@ -14,84 +14,78 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # emacs-overlay = {
-    #   url = "github:nix-community/emacs-overlay";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    # };
-
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
+  outputs = {nixgl, ...} @ inputs: let
+    hosts = import ./hosts;
 
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-    ];
-
-    nixpkgs-overlays = import ./overlays {inherit inputs;};
-
-    pkgsForSystem = system:
-      import nixpkgs {
-        overlays = builtins.attrValues nixpkgs-overlays;
-        # stdenv.hostPlatform.system = system;
-        inherit system;
+    mkHomeConfigurations = {
+      host,
+      nixpkgs,
+      home-manager,
+      modules ? [],
+    }:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [nixgl.overlay];
+          config = {
+            allowUnfree = true;
+          };
+        };
+        extraSpecialArgs = {
+          inherit host;
+          inherit inputs;
+          lib = inputs.nixpkgs.lib.extend (self: super:
+            inputs.home-manager.lib
+            // (import ./lib.nix {lib = self;}));
+        };
+        modules =
+          [
+            ./modules-home
+            ./hosts/${host.dir}/home.nix
+            # ./overlays
+          ]
+          ++ modules;
       };
   in {
     # legacyPackages = pkgsForSystem system;
-    packages = forAllSystems (system: import ./pkgs (pkgsForSystem system));
+    # packages = forAllSystems (system: import ./pkgs (pkgsForSystem system));
 
-    nixosConfigurations = let
-      defaultSystem = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          (
-            {...}: {
-              nixpkgs.overlays = builtins.attrValues nixpkgs-overlays;
-            }
-          )
-          ./nixos/configuration.nix
-        ];
-      };
-    in {
-      delta = defaultSystem.extendModules {
-        modules = [./nixos/hosts/delta.nix];
-      };
-    };
+    # nixosConfigurations = let
+    #   defaultSystem = nixpkgs.lib.nixosSystem {
+    #     specialArgs = {inherit inputs outputs;};
+    #     modules = [
+    #       (
+    #         {...}: {
+    #           nixpkgs.overlays = builtins.attrValues nixpkgs-overlays;
+    #         }
+    #       )
+    #       ./nixos/configuration.nix
+    #     ];
+    #   };
+    # in {
+    #   delta = defaultSystem.extendModules {
+    #     modules = [./nixos/hosts/delta.nix];
+    #   };
+    # };
 
-    homeConfigurations."nobbele@delta" = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsForSystem "x86_64-linux";
-      extraSpecialArgs = {
-        inherit inputs outputs;
-        isNixOS = true;
-      };
-      modules = [
-        ./home-manager/home.nix
-        ./home-manager/delta.nix
-      ];
-    };
+    # homeConfigurations."nobbele@delta" = home-manager.lib.homeManagerConfiguration {
+    #   pkgs = pkgsForSystem "x86_64-linux";
+    #   extraSpecialArgs = {
+    #     inherit inputs outputs;
+    #     isNixOS = true;
+    #   };
+    #   modules = [
+    #     ./home-manager/home.nix
+    #     ./home-manager/delta.nix
+    #   ];
+    # };
 
-    homeConfigurations."nobbele@beta" = home-manager.lib.homeManagerConfiguration {
-      pkgs = pkgsForSystem "x86_64-linux";
-      extraSpecialArgs = {
-        inherit inputs outputs;
-        isNixOS = false;
-      };
-      modules = [
-        ./home-manager/home.nix
-        ./home-manager/beta.nix
-      ];
+    homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfigurations {
+      host = hosts.desktop-beta;
+      nixpkgs = inputs.nixpkgs;
+      home-manager = inputs.home-manager;
     };
   };
 }

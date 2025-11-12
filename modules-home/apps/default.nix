@@ -1,0 +1,41 @@
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./games.nix ./emacs.nix ./vscode.nix ./creative.nix];
+
+  config = {
+    home.glPackages = with pkgs; [
+      qimgv
+      qbittorrent
+      bitwarden-desktop
+    ];
+
+    # TODO include brave, ark, kate and dolphin here..
+
+    programs.mpv = {
+      package = config.lib.nixGL.wrap pkgs.mpv;
+      enable = true;
+    };
+
+    me.defaultApplications = {
+      video = "mpv.desktop";
+      audio = "mpv.desktop";
+      image = "qimgv.desktop";
+      archive = "org.kde.ark.desktop";
+      browser = "brave-browser.desktop";
+      pdf = "brave-browser.desktop";
+      file-explorer = "org.kde.dolphin.desktop";
+      text = "kate.desktop";
+    };
+
+    programs.obs-studio = {
+      enable = true;
+      package = config.lib.nixGL.wrap pkgs.obs-studio;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-pipewire-audio-capture
+      ];
+    };
+  };
+}
