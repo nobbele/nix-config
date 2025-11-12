@@ -22,6 +22,17 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than +3";
+    };
+
+    nix.optimise = {
+      automatic = true;
+      dates = "weekly";
+    };
+
     nix.settings = {
       experimental-features = ["nix-command" "flakes" "pipe-operators"];
       auto-optimise-store = true;

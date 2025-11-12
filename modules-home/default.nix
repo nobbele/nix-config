@@ -2,7 +2,6 @@
   lib,
   host,
   inputs,
-  config,
   ...
 }: {
   imports = [
@@ -23,6 +22,12 @@
     home = {
       username = host.username;
       homeDirectory = "/home/${host.username}";
+    };
+
+    nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
     };
 
     nixpkgs.config.allowUnfree = true;
