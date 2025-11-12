@@ -8,12 +8,13 @@
   me.dev.storm.enable = true;
   me.apps = {
     games.enable = true;
+    vscode.enable = true;
     creative.enable = true;
   };
 
   home.shellAliases = {
     # TODO hosts rewrite
-    rb = "sudo nixos-rebuild switch --flake ${config.me.flakePath} -I ${config.me.flakePath}/nixos/configuration.nix --impure";
+    rb = ''sudo nixos-rebuild switch --flake ${config.me.flakePath}#"$(hostname)" --impure "$@"'';
   };
 
   # TODO move this out into modules
@@ -29,13 +30,6 @@
     openssl
     distrobox
     cmake
-    (
-      with dotnetCorePackages;
-        combinePackages [
-          sdk_7_0
-          sdk_8_0
-        ]
-    )
     nodejs
     icu
     pkg-config

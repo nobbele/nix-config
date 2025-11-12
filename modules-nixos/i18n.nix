@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  services.libinput.enable = true;
   services.xserver.xkb = {
     layout = "se";
     variant = "nodeadkeys";
@@ -16,7 +17,6 @@
     enable = true;
     type = "fcitx5";
 
-    # waylandFrontend = true;
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-mozc

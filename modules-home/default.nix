@@ -25,6 +25,8 @@
       homeDirectory = "/home/${host.username}";
     };
 
+    nixpkgs.config.allowUnfree = true;
+
     nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
     programs.home-manager.enable = true;

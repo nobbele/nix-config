@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [./storm.nix];
+  imports = [./storm.nix ./dotnet.nix];
 
   config = {
     home.packages = with pkgs; [

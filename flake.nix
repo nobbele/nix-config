@@ -23,15 +23,11 @@
       host,
       nixpkgs,
       home-manager,
-      modules ? [],
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [nixgl.overlay];
-          config = {
-            allowUnfree = true;
-          };
         };
         extraSpecialArgs = {
           inherit host;
@@ -40,47 +36,40 @@
             inputs.home-manager.lib
             // (import ./lib.nix {lib = self;}));
         };
-        modules =
-          [
-            ./modules-home
-            ./hosts/${host.dir}/home.nix
-            # ./overlays
-          ]
-          ++ modules;
+        modules = [
+          ./modules-home
+          ./hosts/${host.dir}/home.nix
+        ];
+      };
+
+    mkNixOSConfiguration = {
+      host,
+      nixpkgs,
+    }:
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit host;
+          inherit inputs;
+          lib = inputs.nixpkgs.lib.extend (self: super: (import ./lib.nix {lib = self;}));
+        };
+        modules = [
+          ./modules-nixos
+          ./hosts/${host.dir}/configuration.nix
+          ./hosts/${host.dir}/configuration-hardware.nix
+        ];
       };
   in {
-    # legacyPackages = pkgsForSystem system;
-    # packages = forAllSystems (system: import ./pkgs (pkgsForSystem system));
+    nixosConfigurations.${hosts.laptop-delta.hostname} = mkNixOSConfiguration {
+      host = hosts.laptop-delta;
+      nixpkgs = inputs.nixpkgs;
+    };
 
-    # nixosConfigurations = let
-    #   defaultSystem = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {inherit inputs outputs;};
-    #     modules = [
-    #       (
-    #         {...}: {
-    #           nixpkgs.overlays = builtins.attrValues nixpkgs-overlays;
-    #         }
-    #       )
-    #       ./nixos/configuration.nix
-    #     ];
-    #   };
-    # in {
-    #   delta = defaultSystem.extendModules {
-    #     modules = [./nixos/hosts/delta.nix];
-    #   };
-    # };
-
-    # homeConfigurations."nobbele@delta" = home-manager.lib.homeManagerConfiguration {
-    #   pkgs = pkgsForSystem "x86_64-linux";
-    #   extraSpecialArgs = {
-    #     inherit inputs outputs;
-    #     isNixOS = true;
-    #   };
-    #   modules = [
-    #     ./home-manager/home.nix
-    #     ./home-manager/delta.nix
-    #   ];
-    # };
+    homeConfigurations."${hosts.laptop-delta.username}@${hosts.laptop-delta.hostname}" = mkHomeConfigurations {
+      host = hosts.laptop-delta;
+      nixpkgs = inputs.nixpkgs;
+      home-manager = inputs.home-manager;
+    };
 
     homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfigurations {
       host = hosts.desktop-beta;

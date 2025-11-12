@@ -3,7 +3,12 @@
   pkgs,
   ...
 }: {
-  imports = [./games.nix ./emacs.nix ./vscode.nix ./creative.nix];
+  imports = [
+    ./games.nix
+    ./emacs.nix
+    ./vscode.nix
+    ./creative.nix
+  ];
 
   config = {
     home.glPackages = with pkgs; [
