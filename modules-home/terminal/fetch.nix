@@ -27,7 +27,7 @@ in {
     programs.hyfetch = {
       enable = true;
       settings = {
-        preset = "rainbow";
+        preset = "demigirl";
         mode = "rgb";
         color_align = {
           mode = "horizontal";
