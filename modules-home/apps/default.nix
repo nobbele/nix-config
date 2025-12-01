@@ -15,6 +15,7 @@
       qimgv
       qbittorrent
       bitwarden-desktop
+      protonmail-desktop
     ];
 
     # TODO include brave, ark, kate and dolphin here..

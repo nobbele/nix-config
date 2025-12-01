@@ -36,5 +36,6 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "diffEditor.ignoreTrimWhitespace": false
 }
