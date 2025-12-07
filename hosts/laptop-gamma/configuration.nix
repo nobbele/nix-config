@@ -14,6 +14,8 @@
 
   me.browser.enable = true;
 
+  security.pam.services.sddm.enableKwallet = true;
+
   environment.systemPackages = [
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
