@@ -1,0 +1,24 @@
+{
+    "extensions.autoCheckUpdates": false,
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd",
+    "nix.serverSettings": {
+        "nixd": {
+            "formatting": {
+                "command": [
+                    "alejandra"
+                ]
+            },
+            "options": {
+                "nixos": {
+                    "expr": "(builtins.getFlake \"/home/nobbele/.nixos\").nixosConfigurations.delta.options"
+                },
+                "home-manager": {
+                    "expr": "(builtins.getFlake \"/home/nobbele/.nixos\").homeConfigurations.\"nobbele@delta\".options"
+                }
+            }
+        }
+    },
+    "update.mode": "none",
+    "editor.fontSize": 16
+}

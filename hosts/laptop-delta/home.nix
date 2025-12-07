@@ -20,15 +20,9 @@
   # TODO move this out into modules
   home.packages = with pkgs; [
     lutris
-    wget
-    git
-    htop
-    trash-cli
-    gparted
     clang
     gnumake
     openssl
-    distrobox
     cmake
     nodejs
     icu
