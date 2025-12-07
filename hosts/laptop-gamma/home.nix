@@ -14,6 +14,10 @@
     rb = ''sudo nixos-rebuild switch --flake ${config.me.flakePath}#"$(hostname)" --impure "$@"'';
   };
 
+  home.packages = with pkgs; [
+    onlyoffice-desktopeditors
+  ];
+
   targets.genericLinux.enable = false;
   home.stateVersion = "25.11";
 }

@@ -10,6 +10,7 @@
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = inputs: let
@@ -17,8 +18,8 @@
 
     mkHomeConfiguration = {
       host,
-      nixpkgs,
-      home-manager,
+      nixpkgs ? inputs.nixpkgs,
+      home-manager ? inputs.home-manager,
     }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -39,7 +40,7 @@
 
     mkNixOSConfiguration = {
       host,
-      nixpkgs,
+      nixpkgs ? inputs.nixpkgs,
     }:
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -57,27 +58,19 @@
   in {
     nixosConfigurations.${hosts.laptop-delta.hostname} = mkNixOSConfiguration {
       host = hosts.laptop-delta;
-      nixpkgs = inputs.nixpkgs;
     };
     nixosConfigurations.${hosts.laptop-gamma.hostname} = mkNixOSConfiguration {
       host = hosts.laptop-gamma;
-      nixpkgs = inputs.nixpkgs;
     };
 
     homeConfigurations."${hosts.laptop-delta.username}@${hosts.laptop-delta.hostname}" = mkHomeConfiguration {
       host = hosts.laptop-delta;
-      nixpkgs = inputs.nixpkgs;
-      home-manager = inputs.home-manager;
     };
     homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfiguration {
       host = hosts.desktop-beta;
-      nixpkgs = inputs.nixpkgs;
-      home-manager = inputs.home-manager;
     };
     homeConfigurations."${hosts.laptop-gamma.username}@${hosts.laptop-gamma.hostname}" = mkHomeConfiguration {
       host = hosts.laptop-gamma;
-      nixpkgs = inputs.nixpkgs;
-      home-manager = inputs.home-manager;
     };
   };
 }
