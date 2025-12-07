@@ -9,4 +9,9 @@
     username = "nobbele";
     dir = "laptop-delta";
   };
+  laptop-gamma = {
+    hostname = "gamma";
+    username = "nobbele";
+    dir = "laptop-gamma";
+  };
 }

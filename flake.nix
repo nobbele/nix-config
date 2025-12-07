@@ -15,7 +15,7 @@
   outputs = inputs: let
     hosts = import ./hosts;
 
-    mkHomeConfigurations = {
+    mkHomeConfiguration = {
       host,
       nixpkgs,
       home-manager,
@@ -59,15 +59,23 @@
       host = hosts.laptop-delta;
       nixpkgs = inputs.nixpkgs;
     };
+    nixosConfigurations.${hosts.laptop-gamma.hostname} = mkNixOSConfiguration {
+      host = hosts.laptop-gamma;
+      nixpkgs = inputs.nixpkgs;
+    };
 
-    homeConfigurations."${hosts.laptop-delta.username}@${hosts.laptop-delta.hostname}" = mkHomeConfigurations {
+    homeConfigurations."${hosts.laptop-delta.username}@${hosts.laptop-delta.hostname}" = mkHomeConfiguration {
       host = hosts.laptop-delta;
       nixpkgs = inputs.nixpkgs;
       home-manager = inputs.home-manager;
     };
-
-    homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfigurations {
+    homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfiguration {
       host = hosts.desktop-beta;
+      nixpkgs = inputs.nixpkgs;
+      home-manager = inputs.home-manager;
+    };
+    homeConfigurations."${hosts.laptop-gamma.username}@${hosts.laptop-gamma.hostname}" = mkHomeConfiguration {
+      host = hosts.laptop-gamma;
       nixpkgs = inputs.nixpkgs;
       home-manager = inputs.home-manager;
     };
