@@ -6,9 +6,7 @@
   me.flakePath = config.home.homeDirectory + "/.nixos";
   me.fetch.distro = "nixos";
   me.apps = {
-    games.enable = true;
     vscode.enable = true;
-    creative.enable = true;
   };
 
   home.shellAliases = {
