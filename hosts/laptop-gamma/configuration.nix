@@ -25,8 +25,7 @@
   boot.kernelModules = ["hp-wmi"];
   hardware.enableAllFirmware = lib.mkDefault true;
   networking.networkmanager.settings.device = {
-    match-device = "driver:iwlwifi";
-    wifi.scan-rand-mac-address = "no";
+    "wifi.scan-rand-mac-address" = "no";
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
