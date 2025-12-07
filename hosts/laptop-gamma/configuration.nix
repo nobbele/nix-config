@@ -18,6 +18,16 @@
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
+  boot = {
+    initrd.systemd.enable = true;
+    loader.timeout = 0;
+
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+    };
+  };
+
   # Hardware (TODO Upstream to nixos-hardware)
   hardware.enableRedistributableFirmware = lib.mkDefault true;
   services.thermald.enable = lib.mkDefault true;
@@ -35,6 +45,8 @@
       preLVM = true;
     };
   };
+
+  hardware.bluetooth.enable = true;
 
   system.stateVersion = "25.11"; # Do not modify!!
 }
