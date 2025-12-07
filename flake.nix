@@ -14,6 +14,7 @@
   };
 
   outputs = inputs: let
+    lib = inputs.nixpkgs.lib;
     hosts = import ./hosts;
 
     mkHomeConfiguration = {
@@ -55,22 +56,25 @@
           ./hosts/${host.dir}/configuration-hardware.nix
         ];
       };
-  in {
-    nixosConfigurations.${hosts.laptop-delta.hostname} = mkNixOSConfiguration {
-      host = hosts.laptop-delta;
-    };
-    nixosConfigurations.${hosts.laptop-gamma.hostname} = mkNixOSConfiguration {
-      host = hosts.laptop-gamma;
-    };
 
-    homeConfigurations."${hosts.laptop-delta.username}@${hosts.laptop-delta.hostname}" = mkHomeConfiguration {
-      host = hosts.laptop-delta;
-    };
-    homeConfigurations."${hosts.desktop-beta.username}@${hosts.desktop-beta.hostname}" = mkHomeConfiguration {
-      host = hosts.desktop-beta;
-    };
-    homeConfigurations."${hosts.laptop-gamma.username}@${hosts.laptop-gamma.hostname}" = mkHomeConfiguration {
-      host = hosts.laptop-gamma;
-    };
-  };
+    mkConfigurations = hosts: let
+      hostMapper = {
+        nixos ? false,
+        home-manager ? false,
+        ...
+      } @ host:
+        lib.attrsets.mergeAttrsList [
+          (lib.attrsets.optionalAttrs nixos {
+            nixosConfigurations.${host.hostname} = mkNixOSConfiguration {inherit host;};
+          })
+          (lib.attrsets.optionalAttrs home-manager {
+            homeConfigurations."${host.username}@${host.hostname}" = mkHomeConfiguration {inherit host;};
+          })
+        ];
+
+      recursiveMergeAttrsList = e: lib.foldl lib.attrsets.recursiveUpdate {} e;
+    in
+      recursiveMergeAttrsList (map hostMapper (lib.attrsets.attrValues hosts));
+  in 
+    mkConfigurations hosts;
 }

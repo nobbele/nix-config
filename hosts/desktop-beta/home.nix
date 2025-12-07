@@ -15,6 +15,5 @@
   ];
 
   targets.genericLinux.enable = true;
-  # nixGL.defaultWrapper = "nvidia";
   home.stateVersion = "24.11";
 }

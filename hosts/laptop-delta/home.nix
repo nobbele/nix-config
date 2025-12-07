@@ -53,6 +53,5 @@
   ];
 
   targets.genericLinux.enable = false;
-  nixGL.defaultWrapper = "mesa";
   home.stateVersion = "24.11";
 }
