@@ -10,8 +10,6 @@
   me.audio.lowLatency = true;
   me.ssh.server.enable = false;
 
-  security.pam.services.sddm.enableKwallet = true;
-
   # TODO Make this prettier..
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
