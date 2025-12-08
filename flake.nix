@@ -10,7 +10,7 @@
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "github:nobbele/nixos-hardware";
   };
 
   outputs = inputs: let
@@ -75,6 +75,6 @@
       recursiveMergeAttrsList = e: lib.foldl lib.attrsets.recursiveUpdate {} e;
     in
       recursiveMergeAttrsList (map hostMapper (lib.attrsets.attrValues hosts));
-  in 
+  in
     mkConfigurations hosts;
 }

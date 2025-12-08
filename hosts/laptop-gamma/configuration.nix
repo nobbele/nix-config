@@ -1,15 +1,10 @@
 {
-  lib,
   pkgs,
   inputs,
   ...
 }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.nixos-hardware.nixosModules.hp-elitebook-AY4Z7AV
   ];
 
   me.browser.enable = true;
@@ -27,16 +22,6 @@
       enable = true;
       theme = "bgrt";
     };
-  };
-
-  # Hardware (TODO Upstream to nixos-hardware)
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
-  services.thermald.enable = lib.mkDefault true;
-  services.fwupd.enable = lib.mkDefault true;
-  boot.kernelModules = ["hp-wmi"];
-  hardware.enableAllFirmware = lib.mkDefault true;
-  networking.networkmanager.settings.device = {
-    "wifi.scan-rand-mac-address" = "no";
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
