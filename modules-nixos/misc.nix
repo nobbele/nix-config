@@ -7,13 +7,21 @@
 
   environment.systemPackages = with pkgs; [
     git
-    vim
     wget
     htop
     trash-cli
     gparted
     distrobox
   ];
+
+  programs.neovim = {
+    enable = true;
+    package = pkgs.neovim-unwrapped;
+
+    viAlias = true;
+    vimAlias = true;
+    defaultEditor = true;
+  };
 
   programs.nix-ld = {
     enable = true;
