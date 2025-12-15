@@ -8,6 +8,7 @@
     ./emacs.nix
     ./vscode.nix
     ./creative.nix
+    ./browser.nix
   ];
 
   config = {
