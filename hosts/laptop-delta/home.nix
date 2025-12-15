@@ -13,7 +13,7 @@
   };
 
   home.shellAliases = {
-    # TODO hosts rewrite
+    # TODO refer to special argument "host"
     rb = ''sudo nixos-rebuild switch --flake ${config.me.flakePath}#"$(hostname)" --impure "$@"'';
   };
 
