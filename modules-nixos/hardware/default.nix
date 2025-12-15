@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./laptop.nix
     ./yubikey.nix
   ];
 
