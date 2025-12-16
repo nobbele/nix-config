@@ -8,6 +8,7 @@
   me.apps = {
     vscode.enable = true;
   };
+  me.desktop-environments.niri.enable = true;
 
   home.shellAliases = {
     # TODO refer to special argument "host"

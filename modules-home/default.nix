@@ -12,6 +12,7 @@
     ./xdg.nix
     ./cli
     ./nvidia.nix
+    ./desktop-environments
   ];
 
   options.me = {

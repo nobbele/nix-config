@@ -14,6 +14,11 @@
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
+  programs.niri = {
+    enable = true;
+    # useNautilus = true;
+  };
+
   boot = {
     initrd.systemd.enable = true;
     loader.timeout = 0;
