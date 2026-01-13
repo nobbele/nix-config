@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   me.flakePath = config.home.homeDirectory + "/nix-config";
   me.fetch.distro = "arch";
   me.nvidia.enable = true;
@@ -9,6 +13,11 @@
     vscode.enable = true;
     creative.enable = true;
   };
+
+  home.packages = with pkgs; [
+    # More stable than installing it from the AUR :P
+    paru
+  ];
 
   home.sessionPath = [
     "/opt/outfox/"
