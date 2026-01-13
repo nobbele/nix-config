@@ -37,5 +37,8 @@
     "markdown": false,
     "scminput": false
   },
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "chat.disableAIFeatures": true
 }
