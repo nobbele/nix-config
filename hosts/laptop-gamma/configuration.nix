@@ -5,6 +5,7 @@
 }: {
   imports = [
     inputs.nixos-hardware.nixosModules.hp-elitebook-AY4Z7AV
+    ./vpn.nix
   ];
 
   me.browser.enable = true;

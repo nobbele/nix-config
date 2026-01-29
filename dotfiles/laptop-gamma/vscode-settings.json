@@ -20,5 +20,8 @@
         }
     },
     "update.mode": "none",
-    "editor.fontSize": 16
+    "editor.fontSize": 16,
+    "github.copilot.enable": {
+        "*": false
+    }
 }
