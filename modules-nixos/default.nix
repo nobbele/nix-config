@@ -11,6 +11,7 @@
     ./misc.nix
     ./browser.nix
     ./ssh.nix
+    ./gaming.nix
   ];
 
   config = {

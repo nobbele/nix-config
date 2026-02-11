@@ -11,6 +11,7 @@
   me.browser.enable = true;
   me.audio.lowLatency = true;
   me.ssh.server.enable = false;
+  me.gaming.enable = true;
 
   # TODO Make this prettier..
   environment.systemPackages = with pkgs; [
