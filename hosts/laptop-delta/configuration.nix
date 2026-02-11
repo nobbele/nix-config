@@ -13,6 +13,16 @@
   me.ssh.server.enable = false;
   me.gaming.enable = true;
 
+  users.users.emilia = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "audio"
+    ];
+
+    shell = pkgs.zsh;
+  };
+
   # TODO Make this prettier..
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default

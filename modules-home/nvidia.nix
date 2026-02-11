@@ -14,7 +14,7 @@
     } ''
       cp /proc/driver/nvidia/version $out 2> /dev/null || touch $out
     '';
-  versionMatch = builtins.match ".*Module  ([0-9.]+)  .*" (builtins.readFile nvidiaVersionFile);
+  versionMatch = builtins.match ".*Module for x86_64  ([0-9.]+)  .*" (builtins.readFile nvidiaVersionFile);
   nvidiaVersion = builtins.head versionMatch;
 
   driverUrl = "https://download.nvidia.com/XFree86/Linux-x86_64/${nvidiaVersion}/NVIDIA-Linux-x86_64-${nvidiaVersion}.run";
