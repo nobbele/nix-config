@@ -31,8 +31,8 @@
       audio = "mpv.desktop";
       image = "qimgv.desktop";
       archive = "org.kde.ark.desktop";
-      browser = "brave-browser.desktop";
-      pdf = "brave-browser.desktop";
+      browser = "floorp.desktop";
+      pdf = "floorp.desktop";
       file-explorer = "org.kde.dolphin.desktop";
       text = "kate.desktop";
     };
