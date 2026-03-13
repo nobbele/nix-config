@@ -2,30 +2,30 @@
   "extensions.autoCheckUpdates": false,
   "update.mode": "none",
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
   "nix.serverSettings": {
     "nixd": {
       "formatting": {
-        "command": ["alejandra"]
+        "command": ["alejandra"],
       },
       "options": {
         "nixos": {
-          "expr": "(builtins.getFlake \"/home/nobbele/nix-config\").nixosConfigurations.beta.options"
+          "expr": "(builtins.getFlake \"/home/nobbele/nix-config\").nixosConfigurations.beta.options",
         },
         "home-manager": {
-          "expr": "(builtins.getFlake \"/home/nobbele/nix-config\").homeConfigurations.\"nobbele@beta\".options"
-        }
-      }
-    }
+          "expr": "(builtins.getFlake \"/home/nobbele/nix-config\").homeConfigurations.\"nobbele@beta\".options",
+        },
+      },
+    },
   },
   "C_Cpp.intelliSenseEngine": "disabled",
   "haskell.manageHLS": "GHCup",
   "godotTools.editorPath.godot4": "/usr/bin/godot-mono",
   "files.associations": {
-    "*.bs": "java"
+    "*.bs": "java",
   },
   "C_Cpp.loggingLevel": "Debug",
   "editor.fontFamily": "Source Code Pro",
@@ -35,10 +35,10 @@
     "*": false,
     "plaintext": false,
     "markdown": false,
-    "scminput": false
+    "scminput": false,
   },
   "diffEditor.ignoreTrimWhitespace": false,
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-  "chat.disableAIFeatures": true
+  "typescript.updateImportsOnFileMove.enabled": "always",
 }
