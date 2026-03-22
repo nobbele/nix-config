@@ -34,7 +34,7 @@
   };
 
   # I think this is unncessary? services.gpg-agent should already set it
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     export SSH_AUTH_SOCK="$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)"
   '';
 

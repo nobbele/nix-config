@@ -12,6 +12,7 @@
     ./xdg.nix
     ./cli
     ./nvidia.nix
+    (inputs.nix-index-database.homeModules.default)
   ];
 
   options.me = {
@@ -23,6 +24,8 @@
       username = host.username;
       homeDirectory = "/home/${host.username}";
     };
+
+    programs.nix-index-database.comma.enable = true;
 
     nix.gc = {
       automatic = true;

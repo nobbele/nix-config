@@ -73,7 +73,7 @@
     builtins.concatLists (
       lib.mapAttrsToList (
         _: value:
-          builtins.map (mimeType: {
+          map (mimeType: {
             name = mimeType;
             value = value.application;
           })
@@ -99,7 +99,7 @@ in {
       defaultApplications =
         defaultAssociations
         // {
-          "application/pdf" = ["brave-browser.desktop"];
+          "application/pdf" = ["floorp.desktop"];
         };
     };
   };
