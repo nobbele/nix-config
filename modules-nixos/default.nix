@@ -39,9 +39,10 @@
       auto-optimise-store = true;
 
       substituters = [
+        "https://aseipp-nix-cache.global.ssl.fastly.net"
+        "https://cache.nixos.org/"
         "https://nix-gaming.cachix.org"
         "https://nix-community.cachix.org"
-        "https://cache.nixos.org/"
         "https://devenv.cachix.org"
       ];
       trusted-public-keys = [
