@@ -18,7 +18,7 @@ in {
     home.packages = [pkgs.fastfetch];
 
     xdg.configFile."fastfetch/config.jsonc".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.me.flakePath}/dotfiles/fastfetch.jsonc";
+      config.lib.file.mkOutOfStoreSymlink "${config.me.flakePath}/_old/dotfiles/fastfetch.jsonc";
 
     me.terminal.initExtra = ''
       ${pkgs.hyfetch}/bin/hyfetch

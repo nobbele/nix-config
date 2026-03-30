@@ -11,7 +11,7 @@ in {
   };
 
   config = lib.mkIf emacsCfg.enable {
-    home.file.".config/emacs".source = config.lib.file.mkOutOfStoreSymlink "${config.me.flakePath}/dotfiles/emacs";
+    home.file.".config/emacs".source = config.lib.file.mkOutOfStoreSymlink "${config.me.flakePath}/_old/dotfiles/emacs";
 
     me.terminal.initExtra = ''
       [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \

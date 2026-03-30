@@ -6,7 +6,7 @@
 }: let
   selfCfg = config.me.apps.vscode;
 
-  hostSettings = config.lib.file.mkOutOfStoreSymlink "${config.me.flakePath}/dotfiles/${host.dir}/vscode-settings.json";
+  hostSettings = config.lib.file.mkOutOfStoreSymlink "${config.me.flakePath}/_old/dotfiles/${host.dir}/vscode-settings.json";
   vscodeDir = builtins.getAttr (config.programs.vscode.package.pname) {
     "vscode" = "Code";
     "vscode-insiders" = "Code - Insiders";

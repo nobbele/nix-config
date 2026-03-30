@@ -15,11 +15,20 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    import-tree.url = "github:vic/import-tree";
+    flake-aspects.url = "github:vic/flake-aspects";
+    den.url = "github:vic/den";
   };
 
   outputs = inputs: let
     lib = inputs.nixpkgs.lib;
-    hosts = import ./hosts;
+    hosts = import ./_old/hosts;
+
+    den =
+      (inputs.nixpkgs.lib.evalModules {
+        modules = [(inputs.import-tree ./modules)];
+        specialArgs.inputs = inputs;
+      }).config;
 
     mkHomeConfiguration = {
       host,
@@ -35,11 +44,11 @@
           inherit inputs;
           lib = inputs.nixpkgs.lib.extend (self: super:
             inputs.home-manager.lib
-            // (import ./lib.nix {lib = self;}));
+            // (import ./_old/lib.nix {lib = self;}));
         };
         modules = [
-          ./modules-home
-          ./hosts/${host.dir}/home.nix
+          ./_old/modules-home
+          ./_old/hosts/${host.dir}/home.nix
         ];
       };
 
@@ -52,12 +61,10 @@
         specialArgs = {
           inherit host;
           inherit inputs;
-          lib = inputs.nixpkgs.lib.extend (self: super: (import ./lib.nix {lib = self;}));
+          lib = inputs.nixpkgs.lib.extend (self: super: (import ./_old/lib.nix {lib = self;}));
         };
         modules = [
-          ./modules-nixos
-          ./hosts/${host.dir}/configuration.nix
-          ./hosts/${host.dir}/configuration-hardware.nix
+          den.den.hosts.x86_64-linux.${host.hostname}.mainModule
         ];
       };
 
