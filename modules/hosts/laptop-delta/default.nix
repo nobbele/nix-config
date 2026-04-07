@@ -14,6 +14,10 @@
 
       hardware.bluetooth.enable = true;
 
+      networking.networkmanager.wifi.powersave = false;
+      hardware.enableRedistributableFirmware = true;
+      boot.kernelParams = ["pcie_aspm=off"];
+
       services.power-profiles-daemon.enable = false;
       services.tlp = {
         enable = true;
