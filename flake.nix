@@ -49,6 +49,7 @@
         modules = [
           ./_old/modules-home
           ./_old/hosts/${host.dir}/home.nix
+          den.den.homes.x86_64-linux.${host.username}.mainModule
         ];
       };
 

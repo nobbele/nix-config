@@ -2,14 +2,11 @@
   den.aspects.gaming = {
     homeManager = {
       inputs,
-      system,
       pkgs,
       ...
     }: {
-      imports = [
-        (inputs.nix-gaming.packages.${system}.osu-lazer-bin.override {
-          command_prefix = '''';
-        })
+      home.packages = [
+        inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin
       ];
     };
 

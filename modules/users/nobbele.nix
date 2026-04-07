@@ -1,8 +1,11 @@
 {den, ...}: {
+  den.homes.x86_64-linux.nobbele = {};
+
   den.aspects.nobbele = {
     includes = [
       den.provides.primary-user
       (den.provides.user-shell "zsh")
+      den.aspects.gaming
     ];
     homeManager = {pkgs, ...}: {
       home.packages = with pkgs; [
