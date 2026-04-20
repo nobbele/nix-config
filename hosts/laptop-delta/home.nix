@@ -43,7 +43,7 @@
     # Games
     winetricks
     corefonts
-    wineWowPackages.staging
+    wineWow64Packages.staging
     # unstable.itgmania
 
     spotify
