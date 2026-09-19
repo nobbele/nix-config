@@ -30,6 +30,11 @@
             LC_TELEPHONE = "sv_SE.UTF-8";
             LC_TIME = "sv_SE.UTF-8";
         };
+        i18n.extraLocales = [
+            "sv_SE.UTF-8/UTF-8"
+            "en_US.UTF-8/UTF-8"
+            "en_GB.UTF-8/UTF-8"
+        ];
 
         console.keyMap = "sv-latin1";
         services.xserver.xkb = {
