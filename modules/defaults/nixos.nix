@@ -42,6 +42,8 @@
             pulse.enable = true;
         };
 
+        hardware.alsa.enablePersistence = true;
+
         networking.networkmanager.enable = true;
 
         services.xserver.enable = true;
