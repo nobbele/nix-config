@@ -1,6 +1,13 @@
-{ ... }:
+{ inputs, ... }:
 {
-    den.default.nixos = { pkgs, ... }: {
+    den.default.nixos = { pkgs, ... }: 
+    let
+        unstable = import inputs.nixpkgs-unstable {
+            system = pkgs.stdenv.hostPlatform.system;
+            config.allowUnfree = true;
+        };
+    in
+    {
         system.stateVersion = "26.05";
         nixpkgs.config.allowUnfree = true;
 
@@ -32,6 +39,8 @@
 
         boot.loader.systemd-boot.enable = true;
         boot.loader.efi.canTouchEfiVariables = true;
+
+        boot.kernelPackages = unstable.linuxPackages_latest;
 
         services.pulseaudio.enable = false;
         security.rtkit.enable = true;

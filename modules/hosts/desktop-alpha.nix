@@ -3,7 +3,7 @@
   den.hosts.x86_64-linux.desktop-alpha.users.alice = {};
   
   den.aspects.desktop-alpha = {
-    nixos = { ... }: {
+    nixos = {
         imports = [
             ./desktop-alpha/_hardware.nix
         ];
