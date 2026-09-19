@@ -5,14 +5,12 @@
             den.batteries.primary-user
             den.aspects.zsh
             den.aspects.shell-replacements
+            den.aspects.motd
         ];
 
         nixos = { pkgs, ... }: {            
             users.users."alice" = {
                 description = "Alice Ingmarsson";
-                packages = with pkgs; [
-                    kdePackages.kate
-                ];
             };
 
             programs.steam.enable = true;
@@ -24,6 +22,7 @@
 
         homeManager = { pkgs, ... }: {
             home.packages = with pkgs; [
+                kdePackages.kate
                 equibop
                 bitwarden-desktop
                 nixd
