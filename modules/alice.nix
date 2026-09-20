@@ -26,6 +26,8 @@
                 equibop
                 bitwarden-desktop
                 nixd
+
+                google-chrome
             ];
 
             programs.vscode.enable = true;
@@ -39,12 +41,6 @@
         provides.desktop-alpha = {
             nixos = {
                 services.displayManager.autoLogin.user = "alice";
-            };
-
-            homeManager = { pkgs, ... }: {
-                home.packages = with pkgs; [
-                    faugus-launcher
-                ];
             };
         };
 
