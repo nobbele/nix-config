@@ -11,8 +11,14 @@
         boot.initrd.luks.devices."luks-5897571a-9703-45bf-af3b-df322f20ed15".device = "/dev/disk/by-uuid/5897571a-9703-45bf-af3b-df322f20ed15";
 
         services.printing.enable = true;
+    };
 
-        nix.nixPath = [ "/home/alice/nix-config" ];
+    provides.alice = {
+      homeManager = { pkgs, ... }: {
+        home.packages = with pkgs; [
+          faugus-launcher
+        ];
+      };
     };
   };
 }
