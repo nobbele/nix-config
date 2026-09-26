@@ -31,9 +31,9 @@
       homeManager = { pkgs, ... }: {
         home.packages = with pkgs; [
           faugus-launcher
-          inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
+          (inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
             pipewire_latency = "128/44100";
-          }
+          })
         ];
       };
     };
