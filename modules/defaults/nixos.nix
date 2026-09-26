@@ -82,7 +82,7 @@
             vim
             wget
             git
-            devenv
+            unstable.devenv
         ];
     };
 }
