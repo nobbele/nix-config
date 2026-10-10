@@ -1,4 +1,4 @@
-{ inputs, lib, den, ... }:
+{ inputs, ... }:
 {
     imports = [ inputs.den.flakeModule ];
 }

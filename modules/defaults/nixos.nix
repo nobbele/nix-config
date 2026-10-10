@@ -82,7 +82,10 @@
             vim
             wget
             git
+            usbutils
             unstable.devenv
+
+            (python3.withPackages (ps: with ps; [ platformio ]))
         ];
     };
 }

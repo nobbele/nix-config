@@ -8,7 +8,7 @@
             den.aspects.motd
         ];
 
-        nixos = { pkgs, ... }: {            
+        nixos = { pkgs, ... }: {   
             users.users."alice" = {
                 description = "Alice Ingmarsson";
             };
@@ -26,6 +26,7 @@
                 equibop
                 bitwarden-desktop
                 nixd
+                tokei
 
                 google-chrome
             ];
@@ -39,6 +40,10 @@
         };
 
         provides.desktop-alpha = {
+            includes = [
+                den.aspects.stepmania
+            ];
+
             nixos = {
                 services.displayManager.autoLogin.user = "alice";
             };
