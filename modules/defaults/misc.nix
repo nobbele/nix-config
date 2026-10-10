@@ -5,5 +5,6 @@
     den.default.includes = [
         den.batteries.define-user
         den.batteries.hostname
+        den.aspects.cleanup
     ];
 }

@@ -3,7 +3,7 @@
   den.hosts.x86_64-linux.desktop-alpha.users.alice = {};
   
   den.aspects.desktop-alpha = {
-    nixos = {
+    nixos = { pkgs, ... }: {
       imports = [
         ./desktop-alpha/_hardware.nix
       ];
@@ -23,6 +23,11 @@
       services.xserver.videoDrivers = ["nvidia"];
       hardware.nvidia.modesetting.enable = true;
       hardware.nvidia.open = true;
+
+      services.udev.packages = with pkgs; [ openocd ];
+      
+      users.groups.plugdev = {};
+      users.users."alice".extraGroups = ["plugdev"];
     };
 
     provides.alice = {
@@ -34,6 +39,14 @@
           (inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.osu-lazer-bin.override {
             pipewire_latency = "128/44100";
           })
+
+          gimp
+          libresprite
+          godot
+
+          rustup
+          gcc
+          probe-rs-tools
         ];
       };
     };
