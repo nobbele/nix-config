@@ -18,11 +18,19 @@
             environment.systemPackages = with pkgs; [
                 pciutils
             ];
+
+            services.sunshine = {
+                enable = true;
+                autoStart = false;
+                capSysAdmin = true;
+                openFirewall = true;
+            };
         };
 
         homeManager = { pkgs, ... }: {
             home.packages = with pkgs; [
                 kdePackages.kate
+                unrar
                 equibop
                 bitwarden-desktop
                 nixd
