@@ -27,7 +27,34 @@
       services.udev.packages = with pkgs; [ openocd ];
       
       users.groups.plugdev = {};
-      users.users."alice".extraGroups = ["plugdev"];
+      users.users."alice".extraGroups = ["plugdev" "uinput"];
+
+      services.printing = {
+        enable = true;
+        drivers = with pkgs; [
+          cups-filters
+          cups-browsed
+        ];
+        logLevel = "debug";
+      };
+
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
+
+      # hardware.printers = {
+      #   ensurePrinters = [
+      #     {
+      #       name = "Canon_G600";
+      #       location = "Home";
+      #       deviceUri = "ipp://192.168.50.204:631/ipp/print";
+      #       model = "everywhere";
+      #     }
+      #   ];
+      #   ensureDefaultPrinter = "Canon_G600";
+      # };
     };
 
     provides.alice = {
