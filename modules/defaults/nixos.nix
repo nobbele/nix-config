@@ -70,6 +70,8 @@
         services.desktopManager.plasma6.enable = true;
 
         programs.nix-ld.enable = true;
+        services.envfs.enable = true;
+        
         services.flatpak.enable = true;
         programs.appimage = {
             enable = true;
