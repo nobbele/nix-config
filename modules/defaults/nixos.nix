@@ -1,22 +1,15 @@
-{ inputs, ... }:
+{ ... }:
 {
-    den.default.nixos = { pkgs, ... }: 
-    let
-        unstable = import inputs.nixpkgs-unstable {
-            system = pkgs.stdenv.hostPlatform.system;
-            config.allowUnfree = true;
-        };
-    in
+    den.default.nixos = { pkgs, ... }:
     {
         system.stateVersion = "26.05";
         nixpkgs.config.allowUnfree = true;
 
-        nix.settings.experimental-features = [ 
-            "nix-command"
-            "flakes"
-        ];
-
         nix.settings = {
+            experimental-features = [
+                "nix-command"
+                "flakes"
+            ];
             substituters = ["https://nix-gaming.cachix.org"];
             trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
         };
@@ -50,7 +43,7 @@
         boot.loader.systemd-boot.enable = true;
         boot.loader.efi.canTouchEfiVariables = true;
 
-        boot.kernelPackages = unstable.linuxPackages_latest;
+        boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 
         services.pulseaudio.enable = false;
         security.rtkit.enable = true;
@@ -85,7 +78,7 @@
             wget
             git
             usbutils
-            unstable.devenv
+            pkgs.unstable.devenv
 
             (python3.withPackages (ps: with ps; [ platformio ]))
         ];
