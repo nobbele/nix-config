@@ -15,7 +15,7 @@
             "${config.home.homeDirectory}/StepMania/Songs";
       };
 
-      home.activation.createSongsDir = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      home.activation.createSongsDir = config.lib.dag.entryBefore [ "linkGeneration" ] ''
         mkdir -p "${config.home.homeDirectory}/StepMania/Songs"
       '';
     };
