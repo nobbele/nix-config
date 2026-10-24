@@ -122,5 +122,13 @@ nix eval .#nixosConfigurations.<host>.config.services.xserver.enable
   first.
 - Put host-specific packages or services in `modules/defaults/`.
 - Duplicate a package or service across host files — extract an aspect.
-- Alias `grep` to `rg`; it breaks `-r`, `-E`, and GNU semantics.
 - Run `nixos-rebuild switch` to test a change. Build first.
+
+## Deliberate choices — do not "fix" these
+
+These look like mistakes but are intentional. Leave them alone unless asked:
+
+- **`grep` is aliased to `rg`** in `modules/terminal/shell-replacements.nix`.
+  This does break `-r`, `-E`, and some GNU semantics. It is wanted anyway.
+- **`hyfetch` runs on every interactive shell** (`modules/terminal/motd.nix`).
+  Not guarded to login shells — the banner on every new terminal is the point.

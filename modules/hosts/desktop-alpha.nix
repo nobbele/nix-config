@@ -35,7 +35,6 @@
           cups-filters
           cups-browsed
         ];
-        logLevel = "debug";
       };
 
       services.avahi = {
