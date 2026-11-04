@@ -24,6 +24,10 @@
       hardware.nvidia.modesetting.enable = true;
       hardware.nvidia.open = true;
 
+      hardware.graphics.enable = true;
+      hardware.graphics.enable32Bit = true;
+      fonts.fontconfig.enable = true;
+
       services.udev.packages = with pkgs; [ openocd ];
       
       users.groups.plugdev = {};

@@ -14,6 +14,10 @@
             };
 
             programs.steam.enable = true;
+            programs.gamescope = {
+                enable = true;
+                capSysNice = false;
+            };
 
             environment.systemPackages = with pkgs; [
                 pciutils
@@ -35,6 +39,7 @@
                 bitwarden-desktop
                 nixd
                 tokei
+                typst
 
                 google-chrome
             ];
