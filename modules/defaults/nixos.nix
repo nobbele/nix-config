@@ -64,6 +64,7 @@
 
         programs.nix-ld.enable = true;
         services.envfs.enable = true;
+        programs.direnv.enable = true;
         
         services.flatpak.enable = true;
         programs.appimage = {
